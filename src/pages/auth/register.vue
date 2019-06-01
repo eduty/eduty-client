@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex>
-      <h1>Login</h1>
+      <h1>Cadastro</h1>
     </v-flex>
   </v-layout>
 </template>
