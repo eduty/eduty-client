@@ -53,6 +53,18 @@ export default {
       })
 
       routes.push({
+        name: 'login',
+        path: '/entrar',
+        component: resolve(__dirname, './src/pages/auth/login.vue'),
+      })
+
+      routes.push({
+        name: 'register',
+        path: '/cadastro',
+        component: resolve(__dirname, './src/pages/auth/register.vue'),
+      })
+
+      routes.push({
         name: 'user',
         path: '/:userId',
         component: resolve(__dirname, './src/pages/user/index.vue'),

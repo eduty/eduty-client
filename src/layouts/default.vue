@@ -25,12 +25,14 @@
     </v-navigation-drawer>
 
     <v-toolbar
-      fixed
       app
+      flat
     >
       <v-toolbar-side-icon @click="drawer = !drawer" />
 
-      <v-toolbar-title v-text="title" />
+      <nuxt-link to="/">
+        <v-toolbar-title v-text="title" />
+      </nuxt-link>
     </v-toolbar>
 
     <v-content>
@@ -41,8 +43,12 @@
 
     <v-footer
       app
+      class="pa-3"
     >
-      <span>&copy; 2019</span>
+      <v-container>
+        <v-spacer></v-spacer>
+        <div>&copy; {{ new Date().getFullYear() }}</div>
+      </v-container>
     </v-footer>
   </v-app>
 </template>
