@@ -3,12 +3,7 @@ import pkg from './package'
 
 export default {
   mode: 'spa',
-
   srcDir: 'src/',
-
-  /*
-  ** Headers of the page
-  */
   head: {
     title: pkg.name,
     meta: [
@@ -25,40 +20,28 @@ export default {
       }
     ]
   },
-
-  /*
-  ** Customize the progress-bar color
-  */
   loading: { color: '#fff' },
-
-  /*
-  ** Global CSS
-  */
   css: [
     '~/assets/style/app.styl'
   ],
-
-  /*
-  ** Plugins to load before mounting the App
-  */
   plugins: [
     '@/plugins/vuetify'
   ],
-
-  /*
-  ** Nuxt.js modules
-  */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
-  /*
-  ** Axios module configuration
-  */
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
+    proxy: true,
   },
-
+  proxy: {
+    '/api': {
+      target: 'https://eduty-server.herokuapp.com',
+      pathRewrite: {
+        '^/api': ''
+      }
+    }
+  },
   extendRoutes(routes, resolve) {
     routes.splice(0)
 
@@ -66,11 +49,12 @@ export default {
       path: '/',
       component: resolve(__dirname, './src/pages/index.vue')
     })
-  },
 
-  /*
-  ** Build configuration
-  */
+    routes.push({
+      path: '/inspire',
+      component: resolve(__dirname, './src/pages/inspire.vue')
+    })
+  },
   build: {
     transpile: ['vuetify/lib'],
     plugins: [new VuetifyLoaderPlugin()],
@@ -79,11 +63,7 @@ export default {
         import: ['~assets/style/variables.styl']
       }
     },
-    /*
-    ** You can extend webpack config here
-    */
     extend(config, ctx) {
-      // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',

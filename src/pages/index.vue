@@ -78,6 +78,10 @@ export default {
   components: {
     Logo,
     VuetifyLogo
+  },
+  async fetch({ $axios }) {
+    const result = await $axios.$get('/api/ping')
+    console.log(result)
   }
 }
 </script>
