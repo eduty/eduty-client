@@ -4,7 +4,7 @@
     color="grey lighten-4"
   >
     <img
-      :src="`https://www.gravatar.com/avatar/${emailHash}?s=${size}`"
+      :src="imageSource"
       alt="avatar"
     >
   </v-avatar>
@@ -31,6 +31,9 @@ export default {
     ]),
     emailHash() {
       return md5(this.user.email)
+    },
+    imageSource() {
+      return `https://www.gravatar.com/avatar/${this.emailHash}?s=${this.size}&d=identicon`
     },
   },
 }
