@@ -4,6 +4,8 @@ import pkg from './package'
 export default {
   mode: 'spa',
 
+  srcDir: 'src/',
+
   /*
   ** Headers of the page
   */
@@ -55,6 +57,15 @@ export default {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+  },
+
+  extendRoutes (routes, resolve) {
+    routes.splice(0)
+
+    routes.push({
+      path: '/',
+      component: resolve(__dirname, './src/pages/index.vue')
+    })
   },
 
   /*
