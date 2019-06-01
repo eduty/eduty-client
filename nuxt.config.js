@@ -15,8 +15,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href:
-          'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
+        href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
       }
     ]
   },
@@ -42,18 +41,30 @@ export default {
       }
     }
   },
-  extendRoutes(routes, resolve) {
-    routes.splice(0)
+  router: {
+    fallback: true,
+    extendRoutes(routes, resolve) {
+      routes.splice(0)
 
-    routes.push({
-      path: '/',
-      component: resolve(__dirname, './src/pages/index.vue')
-    })
+      routes.push({
+        name: 'home',
+        path: '/',
+        component: resolve(__dirname, './src/pages/index.vue')
+      })
 
-    routes.push({
-      path: '/inspire',
-      component: resolve(__dirname, './src/pages/inspire.vue')
-    })
+      routes.push({
+        name: 'user',
+        path: '/:userId',
+        component: resolve(__dirname, './src/pages/user/index.vue'),
+        children: [
+          {
+            name: 'user-profile',
+            path: '',
+            component: resolve(__dirname, './src/pages/user/profile.vue'),
+          }
+        ]
+      })
+    }
   },
   build: {
     transpile: ['vuetify/lib'],
