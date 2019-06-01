@@ -77,11 +77,11 @@ import VuetifyLogo from '~/components/VuetifyLogo.vue'
 export default {
   components: {
     Logo,
-    VuetifyLogo
+    VuetifyLogo,
   },
   async fetch({ $axios }) {
     const result = await $axios.$get('/api/ping')
     console.log(result)
-  }
+  },
 }
 </script>
