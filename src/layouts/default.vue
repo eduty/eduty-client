@@ -46,7 +46,7 @@
       class="pa-3"
     >
       <v-container>
-        <v-spacer></v-spacer>
+        <v-spacer />
         <div>&copy; {{ new Date().getFullYear() }}</div>
       </v-container>
     </v-footer>
