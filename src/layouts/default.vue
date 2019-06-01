@@ -56,16 +56,16 @@ export default {
         {
           icon: 'apps',
           title: 'Welcome',
-          to: '/'
+          to: '/',
         },
         {
           icon: 'bubble_chart',
           title: 'Inspire',
-          to: '/inspire'
-        }
+          to: '/inspire',
+        },
       ],
       title: 'Eduty'
     }
-  }
+  },
 }
 </script>

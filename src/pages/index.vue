@@ -73,6 +73,6 @@ export default {
   async fetch({ $axios }) {
     const result = await $axios.$get('/api/ping')
     console.log(result)
-  }
+  },
 }
 </script>

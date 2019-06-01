@@ -9,37 +9,37 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: pkg.description },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
-      }
-    ]
+        href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons',
+      },
+    ],
   },
   loading: { color: '#13274b' },
   css: [
-    '~/assets/style/app.styl'
+    '~/assets/style/app.styl',
   ],
   plugins: [
-    '@/plugins/vuetify'
+    '@/plugins/vuetify',
   ],
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/proxy'
+    '@nuxtjs/proxy',
   ],
   axios: {
-    proxy: true
+    proxy: true,
   },
   proxy: {
     '/api': {
       target: 'https://eduty-server.herokuapp.com',
       pathRewrite: {
-        '^/api': ''
-      }
-    }
+        '^/api': '',
+      },
+    },
   },
   router: {
     fallback: true,
@@ -49,7 +49,7 @@ export default {
       routes.push({
         name: 'home',
         path: '/',
-        component: resolve(__dirname, './src/pages/index.vue')
+        component: resolve(__dirname, './src/pages/index.vue'),
       })
 
       routes.push({
@@ -61,18 +61,18 @@ export default {
             name: 'user-profile',
             path: '',
             component: resolve(__dirname, './src/pages/user/profile.vue'),
-          }
-        ]
+          },
+        ],
       })
-    }
+    },
   },
   build: {
     transpile: ['vuetify/lib'],
     plugins: [new VuetifyLoaderPlugin()],
     loaders: {
       stylus: {
-        import: ['~assets/style/variables.styl']
-      }
+        import: ['~assets/style/variables.styl'],
+      },
     },
     extend(config, ctx) {
       if (ctx.isDev && ctx.isClient) {
@@ -80,9 +80,9 @@ export default {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules)/
+          exclude: /(node_modules)/,
         })
       }
-    }
-  }
+    },
+  },
 }
