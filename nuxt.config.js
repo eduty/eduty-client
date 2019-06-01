@@ -59,7 +59,7 @@ export default {
     // See https://github.com/nuxt-community/axios-module#options
   },
 
-  extendRoutes (routes, resolve) {
+  extendRoutes(routes, resolve) {
     routes.splice(0)
 
     routes.push({
