@@ -58,13 +58,8 @@ export default {
           title: 'Welcome',
           to: '/',
         },
-        {
-          icon: 'bubble_chart',
-          title: 'Inspire',
-          to: '/inspire',
-        },
       ],
-      title: 'Eduty'
+      title: 'Eduty',
     }
   },
 }
