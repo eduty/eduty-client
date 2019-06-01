@@ -1,13 +1,10 @@
 <template>
   <v-avatar
-    :tile="tile"
-    :size="avatarSize"
+    :size="size"
     color="grey lighten-4"
   >
     <img
       :src="`https://www.gravatar.com/avatar/${emailHash}?s=${size}`"
-      :height="size"
-      :width="size"
       alt="avatar"
     >
   </v-avatar>
@@ -21,6 +18,13 @@ import { mapState } from 'vuex'
 // https://en.gravatar.com/site/implement/hash/
 export default {
   name: 'UserAvatar',
+  props: {
+    size: {
+      default: 50,
+      type: Number,
+      validator: value => value >= 1 && value <= 2048,
+    },
+  },
   computed: {
     ...mapState('user', [
       'user',
