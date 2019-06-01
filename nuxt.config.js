@@ -20,7 +20,7 @@ export default {
       }
     ]
   },
-  loading: { color: '#fff' },
+  loading: { color: '#13274b' },
   css: [
     '~/assets/style/app.styl'
   ],
@@ -32,7 +32,7 @@ export default {
     '@nuxtjs/proxy'
   ],
   axios: {
-    proxy: true,
+    proxy: true
   },
   proxy: {
     '/api': {
