@@ -13,9 +13,13 @@ export default {
       'user',
     ]),
   },
-  async fetch({ $axios, params, store }) {
-    const result = await $axios.$get(`/api/users/${params.userId}`)
-    await store.dispatch('user-page/setUser', result)
+  async fetch({ $axios, redirect, params, store }) {
+    try {
+      const result = await $axios.$get(`/api/users/${params.userId}`)
+      await store.dispatch('user-page/setUser', result)
+    } catch (error) {
+      redirect('/')
+    }
   },
 }
 </script>

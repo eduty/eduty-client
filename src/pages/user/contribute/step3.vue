@@ -29,6 +29,7 @@
                 v-model="email"
                 label="Qual o seu e-mail?"
                 :rules="[rules.required]"
+                :disabled="isAuthenticated"
               />
             </v-flex>
 
@@ -40,7 +41,10 @@
               />
             </v-flex>
 
-            <v-flex md6>
+            <v-flex
+              v-if="!isAuthenticated"
+              md6
+            >
               <v-text-field
                 v-model="password"
                 label="Digite sua senha"
@@ -49,7 +53,10 @@
               />
             </v-flex>
 
-            <v-flex md6>
+            <v-flex
+              v-if="!isAuthenticated"
+              md6
+            >
               <v-text-field
                 v-model="confirmPassword"
                 label="Confirme sua senha"
@@ -83,7 +90,7 @@
               type="primary"
               @click="submit"
             >
-              Próximo passo
+              Concluir
             </e-button>
           </v-flex>
         </v-layout>
@@ -159,7 +166,7 @@ export default {
   },
   methods: {
     lastStep() {
-      this.$router.push(`/${this.userPageSlug}/contribuir/dados`)
+      this.$router.push(`/${this.userPageSlug}/contribuir/valor`)
     },
     nextStep() {
       this.$router.push(`/${this.userPageSlug}/contribuir/sucesso`)
@@ -173,8 +180,6 @@ export default {
           user_id: this.currentUser && this.currentUser.id,
           value: this.value,
         }
-
-        console.log(paymentParams)
 
         this.$axios.$post('/api/pay', paymentParams).then(() => {
           this.nextStep()
