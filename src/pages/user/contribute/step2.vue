@@ -4,79 +4,85 @@
       row
       wrap
     >
-      <v-flex md-1 />
+      <v-flex md1 />
 
-      <v-flex md-11>
-        <strong class="step__text">Passo 1</strong>
-        <h2 class="headline mt-1 mb-4">
-          Como deseja contribuir?
+      <v-flex md5>
+        <strong class="step__text">Passo 2</strong>
+        <h2 class="headline mt-1 mb-5">
+          Qual valor?
         </h2>
 
+        <v-form
+          ref="form"
+          v-model="valid"
+        >
+          <v-layout
+            row
+            wrap
+          >
+            <v-flex
+              v-for="value in values"
+              :key="value"
+              md6
+            >
+              <e-card
+                class="step__card mb-4"
+                :class="{
+                  ['step__card--active']: paymentValue === value,
+                }"
+                @click="setPaymentValue(value)"
+              >
+                R$ {{ value }},00
+              </e-card>
+            </v-flex>
+
+            <v-flex md6>
+              <e-card
+                class="step__card"
+                :class="{
+                  ['step__card--active']: paymentValue && !values.includes(paymentValue),
+                }"
+                @click="setPaymentValue('other')"
+              >
+                Outro valor
+              </e-card>
+            </v-flex>
+          </v-layout>
+
+          <v-text-field
+            v-if="paymentValue && !values.includes(paymentValue)"
+            v-model="paymentValue"
+            label="Informe o valor desejado"
+            type="number"
+            :rules="[rules.required]"
+          />
+        </v-form>
+
         <v-layout
+          class="mt-4"
           row
           wrap
         >
-          <v-flex
-            xs12
-            sm8
-            md5
-          >
-            <v-form
-              ref="form"
-              v-model="valid"
+          <v-flex md5>
+            <e-button
+              block
+              class="mt-3"
+              type="outline"
+              to="/marcelo/contribuir"
             >
-              <v-text-field
-                v-model="name"
-                label="Qual o seu nome completo?"
-                :rules="[rules.required]"
-              />
+              Voltar
+            </e-button>
+          </v-flex>
 
-              <v-text-field
-                v-model="cpf"
-                label="Qual o seu CPF?"
-                :rules="[rules.required]"
-              />
-
-              <v-text-field
-                v-model="address"
-                label="Qual o seu endereço?"
-                :rules="[rules.required]"
-              />
-
-              <v-layout
-                row
-                wrap
-              >
-                <v-flex
-                  xs12
-                  md6
-                >
-                  <v-text-field
-                    v-model="city"
-                    label="Qual sua cidade?"
-                    :rules="[rules.required]"
-                  />
-                </v-flex>
-
-                <v-flex
-                  xs12
-                  md6
-                >
-                  <v-text-field
-                    v-model="state"
-                    label="Qual o estado?"
-                    :rules="[rules.required]"
-                  />
-                </v-flex>
-              </v-layout>
-
-              <e-button
-                class="step__action mt-3"
-                @click="submit"
-              >
-                Próximo passo
-              </e-button>
-            </v-form>
+          <v-flex md7>
+            <e-button
+              block
+              class="mt-3"
+              type="primary"
+              to="/marcelo/contribuir/dados"
+            >
+              Próximo passo
+            </e-button>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -85,15 +91,20 @@
 </template>
 
 <script>
-import axios from 'axios'
 import EButton from '~/components/ui/e-button'
+import ECard from '~/components/ui/e-card'
 
 export default {
   components: {
     EButton,
+    ECard,
   },
   data() {
     return {
+      values: [5, 10, 20, 40, 80],
+      cpf: '',
+      paymentValue: null,
+      address: '',
       city: '',
       confirmPassword: '',
       email: '',
@@ -119,18 +130,10 @@ export default {
       this.$router.push('/campanha/sonho')
     },
     submit() {
-      if (this.$refs.form.validate() && this.password === this.confirmPassword) {
-        axios.post('/api/users', {
-          city: this.city,
-          email: this.email,
-          name: this.name,
-          password: this.password,
-          phone: this.phone,
-          state: this.state,
-        }).then(() => {
-          this.nextStep()
-        })
-      }
+    },
+    setPaymentValue(value) {
+      console.log('OPA')
+      this.paymentValue = value
     },
   },
 }
@@ -140,6 +143,16 @@ export default {
 .step__text {
   color: $color-gray;
   text-transform: uppercase;
+}
+
+.step__card {
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+}
+
+.step__card--active {
+  box-shadow: inset 0 0 0 2px $color-accent;
 }
 
 .step__action {

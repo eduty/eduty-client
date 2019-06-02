@@ -116,12 +116,12 @@ export default {
               },
               {
                 name: 'user-contribute-step2',
-                path: 'pagamento',
+                path: 'valor',
                 component: resolve(__dirname, './src/pages/user/contribute/step2.vue'),
               },
               {
                 name: 'user-contribute-step3',
-                path: 'valor',
+                path: 'dados',
                 component: resolve(__dirname, './src/pages/user/contribute/step3.vue'),
               },
               {
