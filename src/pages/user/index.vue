@@ -1,7 +1,7 @@
 <template>
   <div class="background">
     <user-header
-      :contributors="-1"
+      :contributors="45"
       :user="user"
     />
 
