@@ -1,7 +1,12 @@
 <template>
   <v-container>
     <v-layout>
-      <v-flex offset-md2 md7>
+      <v-flex
+        offset-sm3
+        offset-md2
+        offset-lg2
+        md7
+      >
         <nav class="user-options__nav">
           <a class="user-options__nav-link user-options__nav-link--active">Perfil</a>
           <a class="user-options__nav-link">Acompanhamento</a>

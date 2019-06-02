@@ -5,7 +5,10 @@
       wrap
       align-center
     >
-      <v-flex md12>
+      <v-flex
+        md12
+        lg6
+      >
         <strong class="step__text">Passo 1</strong>
         <h2 class="headline mt-1 mb-4">
           Quem é você?
@@ -112,6 +115,7 @@
       <v-flex
         class="section__image"
         md12
+        lg6
       >
         <img
           class="section__image-man"

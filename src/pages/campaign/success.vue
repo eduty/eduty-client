@@ -6,7 +6,7 @@
       wrap
       justify-space-between
     >
-      <v-flex md5>
+      <v-flex md6>
         <h2 class="display-4 mt-1 mb-4">
           Campanha criada com sucesso
         </h2>
@@ -42,9 +42,14 @@
           </v-icon>
         </div>
 
-        <e-button to="/">
-          Voltar para home
-        </e-button>
+        <v-layout>
+          <e-button :to="{ name: 'user-profile', params: { userId: currentUser.slug } }">
+            Ver minha campanha
+          </e-button>
+          <e-button type="outline" to="/" class="ml-3">
+            Voltar para home
+          </e-button>
+        </v-layout>
       </v-flex>
 
       <v-flex md6>

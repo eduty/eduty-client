@@ -5,9 +5,12 @@
       wrap
       align-start
     >
-      <v-flex md1 />
-
-      <v-flex md5>
+      <v-flex
+        md12
+        lg6
+        order-lg1
+        order-md2
+      >
         <strong class="step__text">Passo 1</strong>
         <h2 class="headline mt-1 mb-5">
           Como deseja contribuir?
@@ -139,7 +142,10 @@
 
       <v-flex
         class="section__image"
-        md6
+        md12
+        lg6
+        order-md1
+        order-lg2
       >
         <img
           class="section__image-undraw-transfer-money"

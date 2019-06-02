@@ -5,7 +5,10 @@
         row
         wrap
       >
-        <v-flex md2>
+        <v-flex
+          lg2
+          sm3
+        >
           <UserAvatar
             size="170"
             class="user-header__avatar"
