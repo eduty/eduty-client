@@ -5,12 +5,10 @@
       :style="{ 'width': `${percentage}%` }"
     />
 
-    <span class="progress-indicator">100%</span>
-
     <div
-      v-for="(installment, index) in installments"
-      :key="index"
-      :class="{ 'installment--paid': installment.paid }"
+      v-for="i in installments.howMany"
+      :key="i"
+      :class="{ 'installment--paid': installments.howManyPaid >= i }"
       class="installment"
     />
   </div>
@@ -22,10 +20,11 @@ export default {
   props: {
     installments: {
       required: true,
-      type: Array,
-      validator: array => array.every(item => [
-        'paid',
-      ].every(key => item.hasOwnProperty(key))),
+      type: Object,
+      validator: value => [
+        'howMany',
+        'howManyPaid',
+      ].every(key => value.hasOwnProperty(key)),
     },
     total: {
       required: true,

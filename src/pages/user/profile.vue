@@ -22,14 +22,10 @@ export default {
       totalRaised: ({ campaign }) => campaign.currentBalance,
     }),
     installments() {
-      return [
-        ...Array(6).fill({
-          paid: true,
-        }),
-        ...Array(27).fill({
-          paid: false,
-        }),
-      ]
+      return {
+        howMany: 33,
+        howManyPaid: 6,
+      }
     },
   },
 }
