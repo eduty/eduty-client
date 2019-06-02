@@ -2,9 +2,50 @@
   background-color: rgba(0,0,0,0.1);
   display: flex;
   height: 40px;
+  position: relative;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.progress-indicator {
+  position: absolute;
+}
+
+.progress-bar {
+  background-image: linear-gradient(to right, $color-accent, #00c6ff);
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
 }
 
 .installment {
+  position: relative;
   flex-basis: 0;
   flex-grow: 1;
+
+  &:last-child::after,
+  &::before {
+    offset = -9px;
+
+    position: absolute;
+    left: 0;
+    top: offset;
+    bottom: offset;
+
+    width: 1.1px; //1.1 becuz 1 breaks ¯\_(ツ)_/¯
+
+    background-color: rgba(0,0,0,0.3);
+
+    content: '';
+  }
+
+  &:last-child::after {
+    left: auto;
+    right: 0;
+  }
+}
+
+.installment--paid {
+  background-color: $color-secondary;
 }

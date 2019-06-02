@@ -11,6 +11,8 @@
 
       <FundingProgressBar
         :installments="installments"
+        :total="100"
+        :progress="40"
       />
 
       <EButton>
@@ -42,10 +44,10 @@ export default {
     ]),
     installments() {
       return [
-        ...Array(3).fill({
+        ...Array(6).fill({
           paid: true,
         }),
-        ...Array(7).fill({
+        ...Array(27).fill({
           paid: false,
         }),
       ]
