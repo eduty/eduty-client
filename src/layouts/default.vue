@@ -22,6 +22,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+body {
+  overflow-x: hidden;
+}
+
 .layout__main {
   padding-top: 50px;
 }
