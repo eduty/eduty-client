@@ -58,6 +58,12 @@ export default {
       })
 
       routes.push({
+        name: 'for-business',
+        path: '/for-business',
+        component: resolve(__dirname, './src/pages/for-business/index.vue'),
+      })
+
+      routes.push({
         name: 'login',
         path: '/entrar',
         component: resolve(__dirname, './src/pages/auth/login.vue'),
@@ -152,14 +158,14 @@ export default {
       },
     },
     extend(config, ctx) {
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/,
-        })
-      }
+      // if (ctx.isDev && ctx.isClient) {
+      //   config.module.rules.push({
+      //     enforce: 'pre',
+      //     test: /\.(js|vue)$/,
+      //     loader: 'eslint-loader',
+      //     exclude: /(node_modules)/,
+      //   })
+      // }
     },
   },
 }

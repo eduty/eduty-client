@@ -6,7 +6,7 @@ export const state = () => ({
 
 export const getters = {
   isAuthenticated: state => !!state.currentUser,
-  campaigns: ({ currentUser: campaigns }) => campaigns || [],
+  campaigns: ({ currentUser }) => (currentUser && currentUser.campaigns) || [],
 }
 
 export const mutations = {

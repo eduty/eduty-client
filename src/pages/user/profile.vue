@@ -1,7 +1,7 @@
 <template>
   <div class="profile">
     <user-header
-      :contributors="campaign && campaign.payments && campaign.payments.length"
+      :contributors="campaignPayments.length"
       :user="user"
     />
 
@@ -11,7 +11,7 @@
     />
 
     <v-container
-      v-if="campaign"
+      v-if="user.campaigns.length"
       grid-list-xl
     >
       <funding-card
@@ -65,16 +65,14 @@
             <span>2 de junho de 2019</span>
           </e-card>
 
-          <template v-if="campaign && campaign.payments">
-            <e-card
-              v-for="payment in campaign.payments"
-              :key="payment"
-              class="profile__card mb-3"
-            >
-              <strong>{{ payment.user_name }}</strong> contribuiu com R$ {{ parseInt(payment.value) }}<br>
-              <span>{{ paymentDate(payment.created_at) }}</span>
-            </e-card>
-          </template>
+          <e-card
+            v-for="(payment, index) in campaignPayments"
+            :key="index"
+            class="profile__card mb-3"
+          >
+            <strong>{{ payment.user_name }}</strong> contribuiu com R$ {{ parseInt(payment.value) }}<br>
+            <span>{{ paymentDate(payment.created_at) }}</span>
+          </e-card>
         </v-flex>
       </v-layout>
     </v-container>
@@ -110,12 +108,15 @@ export default {
   },
   computed: {
     campaign() {
-      if (!this.user.campaigns.length) return null
+      if (!this.user.campaigns || !this.user.campaigns.length) return {}
 
       return this.user.campaigns.slice(-1)[0]
     },
     campaignMedia() {
       return this.campaign && this.campaign.campaign_media[0]
+    },
+    campaignPayments() {
+      return (this.campaign && this.campaign.payments) || []
     },
   },
   methods: {

@@ -1,5 +1,8 @@
 <template>
-  <div class="media-youtube">
+  <div
+    v-if="videoId"
+    class="media-youtube"
+  >
     <iframe
       :src="`https://www.youtube.com/embed/${videoId}`"
       class="media-youtube__player"
@@ -24,6 +27,8 @@ export default {
       if (result && result.length) {
         return result[2]
       }
+
+      return null
     },
   },
 }

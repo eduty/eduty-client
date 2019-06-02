@@ -157,6 +157,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters, mapState } from 'vuex'
 import EButton from '~/components/ui/e-button'
 import ECard from '~/components/ui/e-card'
 
@@ -172,17 +173,11 @@ export default {
       address: '',
       city: '',
       confirmPassword: '',
-      email: '',
-      emailRules: [
-        v => !!v || 'Campo obrigatório',
-        v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail deve ser válido',
-      ],
       name: '',
       password: '',
       passwordRules: [
         v => !!v || 'Campo obrigatório',
       ],
-      phone: '',
       rules: {
         required: value => !!value || 'Campo obrigatório.',
       },
@@ -190,11 +185,46 @@ export default {
       valid: false,
     }
   },
+  computed: {
+    ...mapGetters('auth', [
+      'isAuthenticated',
+    ]),
+    ...mapState('auth', [
+      'currentUser',
+    ]),
+    ...mapState('user-page', {
+      userPageSlug: state => state.user.slug,
+    }),
+  },
+  beforeMount() {
+    if (this.isAuthenticated) {
+      this.name = this.currentUser.name
+      this.city = this.currentUser.city
+      this.state = this.currentUser.state
+    }
+  },
   methods: {
+    ...mapActions('payment', {
+      setPayment: 'setPayment',
+    }),
     nextStep() {
-      this.$router.push('/campanha/sonho')
+      this.$router.push(`/${this.userPageSlug}/contribuir/valor`)
     },
     submit() {
+      if (this.$refs.form.validate()) {
+        const payment = {
+          user_id: this.currentUser && this.currentUser.id,
+          name: this.name,
+          city: this.city,
+          state: this.state,
+          method: this.paymentType,
+          kind: 'monthly',
+        }
+
+        this.setPayment(payment)
+
+        this.nextStep()
+      }
     },
     setPaymentType(type) {
       console.log('UIA')

@@ -1,6 +1,9 @@
 <template>
   <header
-    :class="{ 'header--no-delimiter': $route.name !== 'home' }"
+    :class="{
+      'header--no-delimiter': $route.name !== 'home',
+      'header--for-business': forBusiness,
+    }"
     class="header"
   >
     <v-toolbar
@@ -18,12 +21,19 @@
             title="Eduty"
             src="~/assets/images/logo.svg"
           >
+          <v-toolbar-items
+            v-if="forBusiness"
+            class="header__nav"
+          >
+            <span class="ml-3">for business</span>
+          </v-toolbar-items>
         </nuxt-link>
 
         <v-spacer />
 
         <v-toolbar-items class="header__nav">
           <nuxt-link
+            v-if="!forBusiness"
             class="header__link"
             to="/for-business"
           >
@@ -58,6 +68,12 @@ import EButton from '~/components/ui/e-button'
 export default {
   components: {
     EButton,
+  },
+  props: {
+    forBusiness: {
+      default: false,
+      type: Boolean,
+    },
   },
   computed: {
     ...mapActions('auth', [
