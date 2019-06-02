@@ -1,0 +1,151 @@
+<template>
+  <v-container grid-list-xl>
+    <v-layout
+      row
+      wrap
+    >
+      <v-flex md1 />
+
+      <v-flex md5>
+        <strong class="step__text">Passo 3</strong>
+        <h2 class="headline mt-1 mb-5">
+          Complete seus dados :)
+        </h2>
+
+        <v-form
+          ref="form"
+          v-model="valid"
+        >
+          <v-layout
+            row
+            wrap
+          >
+            <v-flex md6>
+              <v-text-field
+                v-model="email"
+                label="Qual o seu e-mail?"
+                :rules="[rules.required]"
+              />
+            </v-flex>
+
+            <v-flex md6>
+              <v-text-field
+                v-model="phone"
+                label="Qual o seu telefone?"
+                :rules="[rules.required]"
+              />
+            </v-flex>
+
+            <v-flex md6>
+              <v-text-field
+                v-model="password"
+                label="Digite sua senha"
+                type="password"
+                :rules="[rules.required]"
+              />
+            </v-flex>
+
+            <v-flex md6>
+              <v-text-field
+                v-model="confirmPassword"
+                label="Confirme sua senha"
+                type="password"
+                :rules="[rules.required]"
+              />
+            </v-flex>
+          </v-layout>
+        </v-form>
+
+        <v-layout
+          class="mt-4"
+          row
+          wrap
+        >
+          <v-flex md5>
+            <e-button
+              block
+              class="mt-3"
+              type="outline"
+              to="/marcelo/contribuir"
+            >
+              Voltar
+            </e-button>
+          </v-flex>
+
+          <v-flex md7>
+            <e-button
+              block
+              class="mt-3"
+              type="primary"
+              to="/marcelo/contribuir/dados"
+            >
+              Próximo passo
+            </e-button>
+          </v-flex>
+        </v-layout>
+      </v-flex>
+    </v-layout>
+  </v-container>
+</template>
+
+<script>
+import EButton from '~/components/ui/e-button'
+
+export default {
+  components: {
+    EButton,
+  },
+  data() {
+    return {
+      cpf: '',
+      address: '',
+      city: '',
+      confirmPassword: '',
+      email: '',
+      emailRules: [
+        v => !!v || 'Campo obrigatório',
+        v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail deve ser válido',
+      ],
+      name: '',
+      password: '',
+      passwordRules: [
+        v => !!v || 'Campo obrigatório',
+      ],
+      phone: '',
+      rules: {
+        required: value => !!value || 'Campo obrigatório.',
+      },
+      state: '',
+      valid: false,
+    }
+  },
+  methods: {
+    nextStep() {
+      this.$router.push('/marcelo/contribuir/sucesso')
+    },
+    submit() {
+    },
+  },
+}
+</script>
+
+<style lang="stylus" scoped>
+.step__text {
+  color: $color-gray;
+  text-transform: uppercase;
+}
+
+.step__card {
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+}
+
+.step__card--active {
+  box-shadow: inset 0 0 0 2px $color-accent;
+}
+
+.step__action {
+  width: 270px;
+}
+</style>
