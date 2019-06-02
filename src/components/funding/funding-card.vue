@@ -14,7 +14,7 @@
         mensalidades garantidas
       </div>
       <div class="figure__details">
-        R$ CARTIADO recebidos
+        R$ 1.256 recebidos
       </div>
     </div>
 
@@ -26,7 +26,7 @@
         mensalidades pendentes
       </div>
       <div class="figure__details">
-        R$ CARTIADO em aberto
+        R$ 15.335 em aberto
       </div>
     </div>
 
@@ -49,8 +49,8 @@ export default {
   computed: {
     installments() {
       return {
-        howMany: 33,
-        howManyPaid: 6,
+        howMany: 197,
+        howManyPaid: 32,
       }
     },
   },
