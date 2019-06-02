@@ -29,7 +29,6 @@
         wrap
       >
         <v-flex
-          v-if="user.campaigns.length"
           md7
         >
           <h2 class="headline mb-4">
@@ -113,7 +112,15 @@ export default {
   },
   computed: {
     campaign() {
-      if (!this.user.campaigns || !this.user.campaigns.length) return {}
+      if (!this.user.campaigns || !this.user.campaigns.length) {
+        return {
+          installments_left: 165,
+          installments_paid: 32,
+          money_left: 15335,
+          money_paid: 1256,
+          percent_with_enough_money: 30,
+        }
+      }
 
       return this.user.campaigns.slice(0,1)[0]
     },
