@@ -80,6 +80,28 @@ export default {
           },
         ],
       })
+
+      routes.push({
+        path: '/campanha',
+        component: resolve(__dirname, './src/pages/campaign/index.vue'),
+        children: [
+          {
+            name: 'campaign',
+            path: '',
+            component: resolve(__dirname, './src/pages/campaign/step1.vue'),
+          },
+          {
+            name: 'campaign-step2',
+            path: 'sonho',
+            component: resolve(__dirname, './src/pages/campaign/step2.vue'),
+          },
+          {
+            name: 'campaign-step3',
+            path: 'porque',
+            component: resolve(__dirname, './src/pages/campaign/step3.vue'),
+          },
+        ],
+      })
     },
   },
   build: {
