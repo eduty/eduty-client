@@ -1,6 +1,7 @@
 <template>
   <header class="header">
     <v-navigation-drawer
+      v-if="isAuthenticated"
       v-model="drawer"
       fixed
       app

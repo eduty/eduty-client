@@ -1,18 +1,9 @@
 <template>
-  <div>
-    <the-header />
-    <h1>Criando sua campanha</h1>
+  <v-container>
+    <v-layout>
+      <h1>Criando sua campanha</h1>
 
-    <nuxt-child />
-  </div>
+      <nuxt-child />
+    </v-layout>
+  </v-container>
 </template>
-
-<script>
-import { TheHeader } from '~/components/layout'
-
-export default {
-  components: {
-    TheHeader,
-  },
-}
-</script>
