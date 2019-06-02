@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { FundingProgressBar } from '~/components/funding/funding-progress-bar.vue'
+import FundingProgressBar from '~/components/funding/funding-progress-bar.vue'
 
 export default {
   components: {
