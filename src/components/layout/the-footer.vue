@@ -66,7 +66,7 @@
     </v-container>
     <v-divider class="footer__divider" />
     <v-container text-xs-center>
-      eduty 2019 © made with love by queroincode winners
+      eduty 2019 © made with love by Code in Quero winners
     </v-container>
   </v-footer>
 </template>
