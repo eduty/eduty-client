@@ -58,6 +58,7 @@
             xs12
             sm8
             md8
+            lg6
           >
             <img src="~/assets/images/home/undraw-savings.svg">
           </v-flex>
@@ -66,6 +67,7 @@
             xs12
             sm4
             md4
+            lg6
           >
             <h1 class="display-4 mb-5">
               O que é o <span class="section__emphasis">eduty?</span>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="section">
+    <div class="section section--dark">
       <v-container grid-list-xl>
         <v-layout
           row
@@ -13,21 +13,11 @@
             md6
           >
             <h1 class="display-3 mb-5">
-              Você foca nos estudos, e nós ajudamos com a mensalidade
+              Crie suas próprias bolsas de estudo para seus funcionários
             </h1>
 
-            <e-button
-              :type="campaigns.length ? 'outline' : 'primary'"
-              to="/campanha"
-            >
-              Iniciar minha campanha
-            </e-button>
-            <e-button
-              v-if="isAuthenticated && campaigns.length"
-              :to="{ name: 'user-profile', params: { userId: currentUser.slug } }"
-              class="ml-3"
-            >
-              Ver minha campanha
+            <e-button to="/campanha">
+              Criar bolsas
             </e-button>
           </v-flex>
 
@@ -36,14 +26,14 @@
             sm8
             md6
           >
-            <img src="~/assets/images/home/undraw-book-lover.svg">
+            <img src="~/assets/images/home/hire.svg" style="width: 100%">
           </v-flex>
         </v-layout>
       </v-container>
     </div>
 
     <img
-      class="section__curve"
+      class="section__curve section__curve--dark"
       src="~/assets/images/home/section-curve.svg"
     >
 
@@ -58,6 +48,7 @@
             xs12
             sm8
             md8
+            lg6
           >
             <img src="~/assets/images/home/undraw-savings.svg">
           </v-flex>
@@ -66,6 +57,7 @@
             xs12
             sm4
             md4
+            lg6
           >
             <h1 class="display-4 mb-5">
               O que é o <span class="section__emphasis">eduty?</span>
@@ -104,13 +96,11 @@
               >
 
               <h2 class="headline mb-3">
-                Crie a sua campanha de estudos
+                Cadastre sua empresa e importe seus funcionários
               </h2>
 
               <p>
-                Você escolhe o curso e a faculdade dos senhos,
-                monta uma página contando o porque as pessoas devem te ajudar,
-                e disponibiliza informações do seu desempenho para o público que te apoia.
+                Você cadastra sua empresa em nossa plataforma, em seguida importa seus funcionários e nós enviaremos convites para eles acessarem a nossa plataforma e completarem seus cadastros
               </p>
             </e-card>
           </v-flex>
@@ -122,16 +112,16 @@
             <e-card class="section__card section__card--two">
               <img
                 class="mt-1 mb-3"
-                src="~/assets/images/home/share.svg"
+                src="~/assets/images/home/hire.svg"
+                height="120px"
               >
 
               <h2 class="headline mb-3">
-                Compartilhe para familiares e amigos
+                Crie bolsas de estudos para seus funcionários
               </h2>
 
               <p>
-                Agora é divulgar a sua campanha para seus familiares e amigos,
-                que podem contribuir mensalmente via cartão de crédito ou boleto bancário.
+                Para cada funcionário cadastratado você poderá estipular um valor para a bolsa de estudos, e eles poderão utilizar esse crédito em graduações, pós-graduações, cursos EAD e etc
               </p>
             </e-card>
           </v-flex>
@@ -143,16 +133,16 @@
             <e-card class="section__card section__card--three">
               <img
                 class="mt-1 mb-3"
-                src="~/assets/images/home/payment.svg"
+                src="~/assets/images/home/undraw_dashboard_nklg.svg"
+                height="150px"
               >
 
               <h2 class="headline mb-3">
-                As contribuições pagam sua mensalidade
+                Acompanhe o desempenho
               </h2>
 
               <p>
-                Nós cuidamos do pagamento das contribuições, do investimendo delas em CDI para garantir um crescimento extra
-                e o pagamento das suas mensalidades até o final do seu curso.
+                Nós cuidamos do pagamento das contribuições, do investimendo delas em CDI para garantir um crescimento extra e você só irá acompanhar o desempenho do seu funcionário
               </p>
             </e-card>
           </v-flex>
@@ -168,14 +158,14 @@
     <div class="section section--last mb-5">
       <v-container grid-list-xl>
         <h1 class="display-4 mb-5">
-          Pare de adiar os seus sonhos, comece agora a torná-lo real
+          Comece a qualificar seus funcionários agora mesmo
         </h1>
 
         <e-button
           class="section__action"
           to="/campanha"
         >
-          Iniciar minha campanha
+          Criar bolsas
         </e-button>
       </v-container>
     </div>
@@ -214,6 +204,11 @@ export default {
   padding-top: 112px;
 }
 
+.section--dark {
+  background-color: $color-primary;
+  color: white;
+}
+
 .section--highlight {
   background-color: $color-light;
 }
@@ -227,6 +222,10 @@ export default {
 .section__curve {
   display: block;
   width: 100%;
+}
+
+.section__curve--dark {
+  background-color: $color-primary;
 }
 
 .section__curve--rotate {
