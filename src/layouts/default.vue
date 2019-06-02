@@ -3,9 +3,7 @@
     <the-header />
 
     <v-content class="layout__main">
-      <v-container>
-        <nuxt />
-      </v-container>
+      <nuxt />
     </v-content>
 
     <the-footer />
