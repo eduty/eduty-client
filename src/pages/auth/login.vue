@@ -136,6 +136,7 @@ export default {
 <style lang="stylus" scoped>
 .section {
   background-color: $color-light;
+  padding: 52px 0 112px;
 }
 
 .section__curve {
