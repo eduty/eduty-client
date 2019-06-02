@@ -38,7 +38,7 @@
                 block
                 class="mt-3"
                 type="outline"
-                to="/campanha/sonho"
+                :to="{ name: 'campaign-step2' }"
               >
                 Voltar
               </e-button>
@@ -114,7 +114,9 @@ export default {
           user_id: this.userId,
           description: this.history,
         }).then(() => {
-          this.$router.push('campanha/sucesso')
+          this.$router.push({
+            name: 'campaign-success',
+          })
         })
       }
     },
