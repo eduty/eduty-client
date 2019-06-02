@@ -25,6 +25,7 @@
 
           <v-textarea
             v-model="history"
+            :rules="[rules.required]"
             label="Conte a sua história"
           />
 
@@ -48,7 +49,7 @@
                 block
                 class="mt-3"
                 type="primary"
-                to="/campanha/sucesso"
+                @click="submit"
               >
                 Concluir
               </e-button>
@@ -77,6 +78,7 @@
 
 <script>
 import EButton from '~/components/ui/e-button'
+import { mapState } from 'vuex'
 
 export default {
   middleware: 'protected',
@@ -85,12 +87,37 @@ export default {
   },
   data() {
     return {
+      history: '',
       university: '',
-      turns: ['Manhã', 'Tarde', 'Noite'],
-      modalidades: ['Presencial', 'EAD'],
+      valid: false,
+      rules: {
+        required: value => !!value || 'Campo obrigatório',
+      },
+      youtube: '',
     }
   },
+  computed: {
+    ...mapState('auth', {
+      userId: state => state.currentUser.id,
+    }),
+    ...mapState('campaign', {
+      course: 'course',
+    }),
+  },
   methods: {
+    submit() {
+      if (this.$refs.form.validate()) {
+        this.$axios.$post(`/api/users/${this.userId}/campaigns`, {
+          campaign: this.campaign,
+          campaign_media: this.youtube,
+          course_id: this.course.id,
+          user_id: this.userId,
+          description: this.history,
+        }).then(() => {
+          this.$router.push('campanha/sucesso')
+        })
+      }
+    },
   },
 }
 </script>
