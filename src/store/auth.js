@@ -4,7 +4,7 @@ export const getters = {
 }
 
 export const mutations = {
-  SET_USER(state, user) {
+  setUser(state, user) {
     state.currentUser = user
   },
 }
