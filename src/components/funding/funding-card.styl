@@ -3,20 +3,34 @@
   background-color: white;
   border-radius: 8px;
   display: grid;
-  grid-template: 'img txt1 txt2' 1fr 'img prog prog' 1fr / 4fr 4fr 4fr;
+  grid-template: 'txt1 txt2' 1fr 'prog prog' 1fr / 1fr 1fr;
   height: 274px;
+
+  @media (min-width: $grid-breakpoints.lg) {
+    grid-template: 'img txt1 txt2' 1fr 'img prog prog' 1fr / 4fr 4fr 4fr;
+  }
 }
 
 .progress-card__img {
   align-self: end;
   grid-area: img;
+  display: none;
+
+  @media (min-width: $grid-breakpoints.lg) {
+    display: block;
+  }
 }
 
 .progress-card__bar {
   align-self: end;
   grid-area: prog;
   margin-bottom: 47px;
+  margin-left: 32px;
   margin-right: 32px;
+
+  @media (min-width: $grid-breakpoints.lg) {
+    margin-left: 0;
+  }
 }
 
 .progress-card__installments {
