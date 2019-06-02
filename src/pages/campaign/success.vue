@@ -18,7 +18,7 @@
 
         <v-text-field
           label="Link da sua campanha"
-          value="http://eduty.me/heitormiranda"
+          :value="`http://eduty.me/${currentUser.slug}`"
           disabled
         />
 
@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import EButton from '~/components/ui/e-button'
 
 export default {
@@ -69,7 +70,10 @@ export default {
       modalidades: ['Presencial', 'EAD'],
     }
   },
-  methods: {
+  computed: {
+    ...mapState('auth', [
+      'currentUser',
+    ]),
   },
 }
 </script>
