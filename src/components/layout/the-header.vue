@@ -1,5 +1,8 @@
 <template>
-  <header class="header">
+  <header
+    :class="{ 'header--no-delimiter': $route.name.startsWith('campaign') }"
+    class="header"
+  >
     <v-navigation-drawer
       v-if="isAuthenticated"
       v-model="drawer"
