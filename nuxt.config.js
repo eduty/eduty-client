@@ -19,7 +19,7 @@ export default {
       },
       {
         rel: 'stylesheet',
-        href: 'https://use.fontawesome.com/releases/v5.0.13/css/all.css',
+        href: 'https://use.fontawesome.com/releases/v5.8.2/css/all.css',
       },
     ],
   },
