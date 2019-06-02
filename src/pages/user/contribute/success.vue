@@ -8,12 +8,12 @@
     >
       <v-flex md5>
         <h2 class="display-4 mt-1 mb-4">
-          Campanha criada com sucesso
+          Contribuição realizada com sucesso
         </h2>
 
         <p class="body-2">
-          Tudo pronto! Agora basta divulgar, utilize o link abaixo e
-          compartilhe com seus familiares, amigos e em suas redes socias
+          Você também pode ajudar a Marcela compartilhando a
+          campanha dela para seus familiares e amigos
         </p>
 
         <v-text-field
