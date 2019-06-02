@@ -16,7 +16,7 @@
       <v-flex md3>
         <e-button
           block
-          :to="{ name: 'user-contribute', params: { userId: currentUser.slug } }"
+          :to="{ name: 'user-contribute', params: { userId: userPageSlug } }"
           @click="$emit('contribute')"
         >
           Contribuir
@@ -35,9 +35,9 @@ export default {
     EButton,
   },
   computed: {
-    ...mapState('auth', [
-      'currentUser',
-    ]),
+    ...mapState('user-page', {
+      userPageSlug: state => state.user.slug,
+    }),
   },
 }
 </script>

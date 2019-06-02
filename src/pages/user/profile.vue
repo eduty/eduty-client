@@ -26,6 +26,7 @@
           </h2>
 
           <media-youtube
+            v-if="campaignMedia && campaignMedia.url"
             class="mb-4"
             :video="campaignMedia.url"
           />
@@ -101,12 +102,12 @@ export default {
   },
   computed: {
     campaign() {
-      if (!this.user.campaigns.length) return {}
+      if (!this.user.campaigns || !this.user.campaigns.length) return {}
 
       return this.user.campaigns.slice(-1)[0]
     },
     campaignMedia() {
-      if (!this.campaign.campaign_media.length) return {}
+      if (!this.campaign.campaign_media || !this.campaign.campaign_media.length) return {}
 
       return this.campaign.campaign_media[0]
     },
