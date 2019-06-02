@@ -111,7 +111,7 @@
             <e-card class="section__card section__card--two">
               <img
                 class="mt-1 mb-3"
-                src="~/assets/images/home/create.svg"
+                src="~/assets/images/home/share.svg"
               >
 
               <h2 class="headline mb-3">
@@ -132,7 +132,7 @@
             <e-card class="section__card section__card--three">
               <img
                 class="mt-1 mb-3"
-                src="~/assets/images/home/create.svg"
+                src="~/assets/images/home/payment.svg"
               >
 
               <h2 class="headline mb-3">
@@ -187,7 +187,6 @@ export default {
 <style lang="stylus" scoped>
 .section--highlight {
   background-color: $color-light;
-  box-shadow: -50rem 0 0 $color-light, 50rem 0 0 $color-light;
 }
 
 .section--last {

@@ -1,7 +1,23 @@
 <template>
-  <v-layout>
-    <v-flex>
-      <h1>Entrar</h1>
+  <div>
+    <v-container>
+      <h1 class="headline">
+        Acessando sua conta
+      </h1>
+    </v-container>
+
+    <img
+      class="section__curve"
+      src="~/assets/images/home/section-curve.svg"
+    >
+
+    <div class="section pb-5">
+      <v-alert
+        :value="loginError"
+        type="error"
+      >
+        E-mail ou senha incorretos!
+      </v-alert>
 
       <v-card>
         <v-card-text class="pt-4">
@@ -14,6 +30,7 @@
               label="E-mail"
               required
               :rules="emailRules"
+              @input="onInputChange"
             />
 
             <v-text-field
@@ -23,9 +40,10 @@
               counter
               required
               :append-icon="e1 ? 'visibility' : 'visibility_off'"
-              :type="e1 ? 'password' : 'text'"
+              :type="e1 ? 'text' : 'password'"
               :rules="passwordRules"
               @click:append="() => (e1 = !e1)"
+              @input="onInputChange"
             />
 
             <v-layout justify-space-between>
@@ -41,14 +59,19 @@
           </v-form>
         </v-card-text>
       </v-card>
-    </v-flex>
-  </v-layout>
+    </div>
+  </div>
 </template>
 
 <script>
+import axios from 'axios'
+import humps from 'lodash-humps'
+import { mapActions } from 'vuex'
+
 export default {
   data() {
     return {
+      loginError: false,
       valid: false,
       e1: false,
       password: '',
@@ -63,10 +86,26 @@ export default {
     }
   },
   methods: {
+    ...mapActions('user', {
+      setUser: 'setUser',
+    }),
+    onInputChange() {
+      this.loginError = false
+    },
     submit() {
       if (this.$refs.form.validate()) {
-        console.log('OPA')
-        // this.$refs.form.$el.submit()
+        axios.post('/api/auth', {
+          email: this.email,
+          password: this.password,
+        }).then(({ data }) => {
+          this.setUser(humps(data))
+
+          this.$router.push({ path: '/for-business' })
+        }).catch(({ status }) => {
+          this.loginError = true
+
+          Promise.reject(status)
+        })
       }
     },
     clear() {
@@ -75,3 +114,14 @@ export default {
   },
 }
 </script>
+
+<style lang="stylus" scoped>
+.section {
+  background-color: $color-light;
+}
+
+.section__curve {
+  display: block;
+  width: 100%;
+}
+</style>

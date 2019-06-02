@@ -61,6 +61,7 @@
           </nuxt-link>
 
           <EButton
+            v-if="!isAuthenticated"
             class="header__link"
             type="outline"
             to="/entrar"
@@ -94,7 +95,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('auth', [
+    ...mapGetters('user', [
       'isAuthenticated',
     ]),
   },

@@ -29,7 +29,7 @@
               <a class="footer__link" href="#">Central de ajuda</a>
             </li>
             <li class="footer__list-item">
-              <a class="footer__link" href="#">Central de frequentesajuda</a>
+              <a class="footer__link" href="#">Perguntas frequentes</a>
             </li>
             <li class="footer__list-item">
               <a class="footer__link" href="#">Termos de uso</a>

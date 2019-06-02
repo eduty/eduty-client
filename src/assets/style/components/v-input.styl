@@ -1,0 +1,22 @@
+.v-input__slot {
+  border: 1px solid #939aa9;
+  border-radius: 4px;
+  padding: 7px 16px;
+
+  &::before,
+  &::after {
+    display: none;
+  }
+
+  .v-input--is-focused &,
+  .v-input--is-label-active & {
+    border-color: $color-accent;
+    transition: border $primary-transition;
+    padding-top: 12px;
+    padding-bottom: 2px;
+
+    .v-input__append-inner {
+      margin-top: 0;
+    }
+  }
+}
