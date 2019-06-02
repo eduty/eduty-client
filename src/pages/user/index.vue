@@ -1,6 +1,6 @@
 <template>
   <v-layout>
-    <v-flex text-xs-center>
+    <v-flex>
       <nuxt-child />
     </v-flex>
   </v-layout>

@@ -21,7 +21,7 @@ export default {
   props: {
     size: {
       default: 50,
-      type: Number,
+      type: [Number, String],
       validator: value => value >= 1 && value <= 2048,
     },
   },

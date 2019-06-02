@@ -1,42 +1,34 @@
 <template>
-  <v-layout>
-    <v-flex text-xs-center>
-      <UserAvatar :size="200" />
-      <h1>{{ user.name }}</h1>
-      <p>
-        {{ $route.params.userId }}
-      </p>
+  <div>
+    <user-header
+      :contributors="-1"
+      :user="user"
+    />
+    <v-container>
+      <e-button>
+        Eduty-me
+      </e-button>
 
-      oi esse é meu projeto
-
-      <FundingProgressBar
+      <funding-progressBar
         :installments="installments"
         :total="100"
         :progress="40"
       />
-
-      <EButton>
-        Eduty-me
-      </EButton>
-
-      <EButton type="outline">
-        Edit this page
-      </EButton>
-    </v-flex>
-  </v-layout>
+    </v-container>
+  </div>
 </template>
 
 <script>
 import EButton from '~/components/ui/e-button'
 import { FundingProgressBar } from '~/components/funding'
-import { UserAvatar } from '~/components/user'
+import { UserHeader } from '~/components/user'
 import { mapState } from 'vuex'
 
 export default {
   components: {
     EButton,
     FundingProgressBar,
-    UserAvatar,
+    UserHeader,
   },
   computed: {
     ...mapState('user', [
