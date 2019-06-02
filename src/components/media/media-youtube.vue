@@ -1,5 +1,8 @@
 <template>
-  <div class="media-youtube">
+  <div
+    v-if="videoId"
+    class="media-youtube"
+  >
     <iframe
       :src="`https://www.youtube.com/embed/${videoId}`"
       class="media-youtube__player"
@@ -19,7 +22,13 @@ export default {
   },
   computed: {
     videoId() {
-      return this.video.match(/^.*(youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#&?]*).*/)[2]
+      const result = this.video.match(/^.*(youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#&?]*).*/)
+
+      if (result && result.length) {
+        return result[2]
+      }
+
+      return null
     },
   },
 }

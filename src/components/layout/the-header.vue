@@ -40,6 +40,14 @@
             Eduty for business
           </nuxt-link>
 
+          <nuxt-link
+            v-if="isAuthenticated"
+            class="header__link"
+            :to="`/${currentUser.slug}`"
+          >
+            {{ currentUser.name }}
+          </nuxt-link>
+
           <a
             v-if="isAuthenticated"
             class="header__link"
@@ -62,7 +70,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 import EButton from '~/components/ui/e-button'
 
 export default {
@@ -78,6 +86,9 @@ export default {
   computed: {
     ...mapActions('auth', [
       'setUser',
+    ]),
+    ...mapState('auth', [
+      'currentUser',
     ]),
     ...mapGetters('auth', [
       'isAuthenticated',

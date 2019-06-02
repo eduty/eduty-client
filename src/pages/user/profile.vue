@@ -5,9 +5,15 @@
       :user="user"
     />
 
-    <user-options class="mb-5" />
+    <user-options
+      :user="user"
+      class="mb-5"
+    />
 
-    <v-container grid-list-xl>
+    <v-container
+      v-if="user.campaigns.length"
+      grid-list-xl
+    >
       <funding-card
         :user="user"
         class="mt-3"
@@ -107,9 +113,7 @@ export default {
       return this.user.campaigns.slice(-1)[0]
     },
     campaignMedia() {
-      if (!this.campaign.campaign_media || !this.campaign.campaign_media.length) return {}
-
-      return this.campaign.campaign_media[0]
+      return this.campaign && this.campaign.campaign_media[0]
     },
     campaignPayments() {
       return (this.campaign && this.campaign.payments) || []
@@ -117,7 +121,7 @@ export default {
   },
   methods: {
     paymentDate(date) {
-      date = new Date('2019-06-02T04:24:45.028Z')
+      date = new Date(date)
 
       return `${date.getDate()} de ${getMonth(date.getMonth())} de ${date.getFullYear()}`
     },

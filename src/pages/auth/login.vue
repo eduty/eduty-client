@@ -22,6 +22,7 @@
             lg5
             sm12
             order-sm2
+            order-md1
           >
             <v-form
               ref="form"
@@ -68,6 +69,7 @@
             lg7
             sm12
             order-sm1
+            order-md2
           >
             <img
               class="section__image-man"

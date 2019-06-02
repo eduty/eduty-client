@@ -12,13 +12,16 @@
 
 <script>
 import md5 from 'md5'
-import { mapState } from 'vuex'
 
 // https://en.gravatar.com/site/implement/images/
 // https://en.gravatar.com/site/implement/hash/
 export default {
   name: 'UserAvatar',
   props: {
+    user: {
+      type: Object,
+      required: true,
+    },
     size: {
       default: 50,
       type: [Number, String],
@@ -26,11 +29,8 @@ export default {
     },
   },
   computed: {
-    ...mapState('user-page', {
-      userPageEmail: state => state.user.email,
-    }),
     emailHash() {
-      return md5(this.userPageEmail)
+      return md5(this.user.email)
     },
     imageSource() {
       return `https://www.gravatar.com/avatar/${this.emailHash}?s=${this.size}&d=identicon`
