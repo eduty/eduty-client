@@ -234,7 +234,7 @@ export default {
   height: 400px;
   margin-bottom: -220px;
   text-align: center;
-  z-index: 2;
+  z-index: 1;
 }
 
 .section__card--two {
