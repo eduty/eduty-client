@@ -12,7 +12,7 @@
         </h2>
 
         <p class="body-2">
-          Você também pode ajudar a Marcela compartilhando a
+          Você também pode ajudar {{ user.name }} compartilhando a
           campanha dela para seus familiares e amigos
         </p>
 
