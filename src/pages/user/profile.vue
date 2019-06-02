@@ -2,7 +2,7 @@
   <v-layout>
     <v-flex text-xs-center>
       <UserAvatar :size="200" />
-      <h1>{{ user.fullName }}</h1>
+      <h1>{{ user.name }}</h1>
       <p>
         {{ $route.params.userId }}
       </p>
