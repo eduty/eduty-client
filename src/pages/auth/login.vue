@@ -12,12 +12,6 @@
     >
 
     <div class="section pb-5">
-      <v-alert
-        :value="loginError"
-        type="error"
-      >
-        E-mail ou senha incorretos!
-      </v-alert>
 
       <v-container grid-list-xl>
         <v-flex md5>
@@ -25,6 +19,14 @@
             ref="form"
             v-model="valid"
           >
+            <v-alert
+              class="mb-4"
+              :value="loginError"
+              type="error"
+            >
+              E-mail ou senha incorretos!
+            </v-alert>
+
             <v-text-field
               v-model="email"
               label="E-mail"
