@@ -10,6 +10,7 @@
           sm3
         >
           <UserAvatar
+            :user="user"
             size="170"
             class="user-header__avatar"
           />
@@ -23,7 +24,10 @@
             {{ user.name }}
           </h1>
 
-          <strong class="user-avatar__contrib title">
+          <strong
+            v-if="contributors"
+            class="user-avatar__contrib title"
+          >
             {{ contributors }} contribuidores
           </strong>
         </v-flex>
@@ -47,9 +51,6 @@ export default {
     user: {
       type: Object,
       required: true,
-      validator: value => [
-        'name',
-      ].every(item => value.hasOwnProperty(item)),
     },
   },
 }

@@ -36,6 +36,7 @@
                 v-model="email"
                 label="Qual o seu e-mail"
                 type="email"
+                :disabled="email === (currentUser && currentUser.email)"
                 :rules="emailRules"
               />
             </v-flex>
@@ -132,7 +133,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex'
 import EButton from '~/components/ui/e-button'
 
 export default {
@@ -162,6 +163,9 @@ export default {
     }
   },
   computed: {
+    ...mapActions('auth', [
+      'setUser',
+    ]),
     ...mapGetters('auth', [
       'isAuthenticated',
     ]),
@@ -171,7 +175,6 @@ export default {
   },
   beforeMount() {
     if (this.isAuthenticated) {
-      console.log(this.currentUser)
       this.name = this.currentUser.name
       this.email = this.currentUser.email
       this.phone = this.currentUser.phone_number
@@ -194,7 +197,8 @@ export default {
           phone: this.phone,
           state: this.state,
           ..._password,
-        }).then(() => {
+        }).then((user) => {
+          this.$store.dispatch('auth/setUser', user)
           this.nextStep()
         })
       }

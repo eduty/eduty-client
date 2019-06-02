@@ -1,13 +1,19 @@
 <template>
   <div class="profile">
     <user-header
-      :contributors="campaign.payments.length"
+      :contributors="campaign && campaign.payments && campaign.payments.length"
       :user="user"
     />
 
-    <user-options class="mb-5" />
+    <user-options
+      :user="user"
+      class="mb-5"
+    />
 
-    <v-container grid-list-xl>
+    <v-container
+      v-if="campaign"
+      grid-list-xl
+    >
       <funding-card
         :user="user"
         class="mt-3"
@@ -26,6 +32,7 @@
           </h2>
 
           <media-youtube
+            v-if="campaignMedia && campaignMedia.url"
             class="mb-4"
             :video="campaignMedia.url"
           />
@@ -58,14 +65,16 @@
             <span>2 de junho de 2019</span>
           </e-card>
 
-          <e-card
-            v-for="payment in campaign.payments"
-            :key="payment"
-            class="profile__card mb-3"
-          >
-            <strong>{{ payment.user_name }}</strong> contribuiu com R$ {{ parseInt(payment.value) }}<br>
-            <span>{{ paymentDate(payment.created_at) }}</span>
-          </e-card>
+          <template v-if="campaign && campaign.payments">
+            <e-card
+              v-for="payment in campaign.payments"
+              :key="payment"
+              class="profile__card mb-3"
+            >
+              <strong>{{ payment.user_name }}</strong> contribuiu com R$ {{ parseInt(payment.value) }}<br>
+              <span>{{ paymentDate(payment.created_at) }}</span>
+            </e-card>
+          </template>
         </v-flex>
       </v-layout>
     </v-container>
@@ -101,19 +110,17 @@ export default {
   },
   computed: {
     campaign() {
-      if (!this.user.campaigns.length) return {}
+      if (!this.user.campaigns.length) return null
 
       return this.user.campaigns.slice(-1)[0]
     },
     campaignMedia() {
-      if (!this.campaign.campaign_media.length) return {}
-
-      return this.campaign.campaign_media[0]
+      return this.campaign && this.campaign.campaign_media[0]
     },
   },
   methods: {
     paymentDate(date) {
-      date = new Date('2019-06-02T04:24:45.028Z')
+      date = new Date(date)
 
       return `${date.getDate()} de ${getMonth(date.getMonth())} de ${date.getFullYear()}`
     },

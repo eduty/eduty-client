@@ -16,7 +16,7 @@
       <v-flex md3>
         <e-button
           block
-          :to="{ name: 'user-contribute', params: { userId: currentUser.slug } }"
+          :to="{ name: 'user-contribute', params: { userId: user.slug } }"
           @click="$emit('contribute')"
         >
           Contribuir
@@ -27,17 +27,17 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import EButton from '~/components/ui/e-button'
 
 export default {
   components: {
     EButton,
   },
-  computed: {
-    ...mapState('auth', [
-      'currentUser',
-    ]),
+  props: {
+    user: {
+      type: Object,
+      required: true,
+    },
   },
 }
 </script>

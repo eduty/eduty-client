@@ -19,7 +19,11 @@ export default {
   },
   computed: {
     videoId() {
-      return this.video.match(/^.*(youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#&?]*).*/)[2]
+      const result = this.video.match(/^.*(youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#&?]*).*/)
+
+      if (result && result.length) {
+        return result[2]
+      }
     },
   },
 }
