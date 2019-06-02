@@ -174,7 +174,7 @@ export default {
           campaign_id: this.campaignId,
           kind: this.payment.kind,
           method: this.payment.method,
-          user_id: this.currentUser && this.currentUser.id,
+          user_id: this.currentUser && this.currentUser.id, // mandar email e senha
           value: this.value,
         }
 

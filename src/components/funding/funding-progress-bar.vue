@@ -7,9 +7,9 @@
       />
 
       <div
-        v-for="i in installments.howMany"
+        v-for="i in howMany"
         :key="i"
-        :class="{ 'installment--paid': installments.howManyPaid >= i }"
+        :class="{ 'installment--paid': howManyPaid >= i }"
         class="installment"
       />
     </div>
@@ -31,13 +31,13 @@
 export default {
   name: 'FundingProgressBar',
   props: {
-    installments: {
+    howMany: {
       required: true,
-      type: Object,
-      validator: value => [
-        'howMany',
-        'howManyPaid',
-      ].every(key => value.hasOwnProperty(key)),
+      type: Number,
+    },
+    howManyPaid: {
+      required: true,
+      type: Number,
     },
     total: {
       required: true,

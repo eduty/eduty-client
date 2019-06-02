@@ -14,7 +14,12 @@
       grid-list-xl
     >
       <funding-card
-        :user="user"
+        v-if="campaign"
+        :installments-left="campaign.installments_left"
+        :installments-paid="campaign.installments_paid"
+        :money-left="campaign.money_left"
+        :money-paid="campaign.money_paid"
+        :percent-with-enough-money="campaign.percent_with_enough_money"
         class="mt-3"
       />
 
@@ -110,7 +115,7 @@ export default {
     campaign() {
       if (!this.user.campaigns || !this.user.campaigns.length) return {}
 
-      return this.user.campaigns.slice(-1)[0]
+      return this.user.campaigns.slice(0,1)[0]
     },
     campaignMedia() {
       return this.user.campaigns.length && this.campaign.campaign_media[0]

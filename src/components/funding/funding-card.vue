@@ -8,7 +8,7 @@
 
     <div class="progress-card__installments progress-card__installments--guaranteed">
       <div class="display-4 figure__figure">
-        {{ installments.howManyPaid }}
+        {{ Math.floor(installmentsLeft * percentWithEnoughMoney / 100) }}
       </div>
 
       <div>
@@ -17,14 +17,14 @@
         </strong>
 
         <div class="figure__details">
-          R$ 1.256 recebidos
+          {{ formatPrice(moneyPaid) }} recebidos
         </div>
       </div>
     </div>
 
     <div class="progress-card__installments progress-card__installments--pending">
       <div class="display-4 figure__figure">
-        {{ installments.howMany - installments.howManyPaid }}
+        {{ installmentsLeft + installmentsPaid - realAlreadyGuaranteeded }}
       </div>
 
       <div>
@@ -33,21 +33,23 @@
         </strong>
 
         <div class="figure__details">
-          R$ 15.335 em aberto
+          {{ formatPrice(moneyLeft) }} em aberto
         </div>
       </div>
     </div>
 
     <FundingProgressBar
-      :installments="installments"
+      :how-many="installmentsLeft + installmentsPaid"
+      :how-many-paid="installmentsPaid"
       :total="100"
-      :progress="40"
+      :progress="percentWithEnoughMoney"
       class="progress-card__bar"
     />
   </div>
 </template>
 
 <script>
+import _ from 'lodash'
 import FundingProgressBar from '~/components/funding/funding-progress-bar.vue'
 
 export default {
@@ -55,17 +57,39 @@ export default {
     FundingProgressBar,
   },
   props: {
-    user: {
-      type: Object,
+    installmentsLeft: {
       required: true,
+      type: Number,
+    },
+    installmentsPaid: {
+      required: true,
+      type: Number,
+    },
+    moneyPaid: {
+      required: true,
+      type: Number,
+    },
+    moneyLeft: {
+      required: true,
+      type: Number,
+    },
+    percentWithEnoughMoney: {
+      required: true,
+      type: Number,
     },
   },
   computed: {
-    installments() {
-      return {
-        howMany: 197,
-        howManyPaid: 32,
-      }
+    realAlreadyGuaranteeded() {
+      return Math.floor(this.installmentsLeft * this.percentWithEnoughMoney / 100)
+    },
+  },
+  methods: {
+    formatPrice(value) {
+      return _.round(value, 2)
+        .toLocaleString('pt-BR', {
+          currency: 'BRL',
+          style: 'currency',
+        });
     },
   },
 }
