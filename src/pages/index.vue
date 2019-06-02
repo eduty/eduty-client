@@ -1,5 +1,10 @@
 <template>
-  <v-layout row wrap align-center>
+  <v-layout
+    class="pt-3"
+    row
+    wrap
+    align-center
+  >
     <v-flex
       xs12
       sm8
@@ -17,7 +22,7 @@
       sm8
       md6
     >
-      <img src="~/assets/images/undraw-book-lover.svg">
+      <img src="~/assets/images/home/undraw-book-lover.svg">
     </v-flex>
   </v-layout>
 </template>
