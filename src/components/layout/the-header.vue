@@ -3,42 +3,12 @@
     :class="{ 'header--no-delimiter': $route.name.startsWith('campaign') }"
     class="header"
   >
-    <v-navigation-drawer
-      v-if="isAuthenticated"
-      v-model="drawer"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-tile
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-tile-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-tile-action>
-
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title" />
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-
     <v-toolbar
       app
       flat
       height="auto"
     >
       <v-container class="header__container py-0">
-        <v-toolbar-side-icon
-          v-if="isAuthenticated"
-          @click="drawer = !drawer"
-        />
-
         <nuxt-link
           class="header__logo"
           to="/"
@@ -60,8 +30,15 @@
             Eduty for business
           </nuxt-link>
 
+          <a
+            v-if="isAuthenticated"
+            class="header__link"
+            @click="logout"
+          >
+            Sair
+          </a>
           <EButton
-            v-if="!isAuthenticated"
+            v-else
             class="header__link"
             type="outline"
             to="/entrar"
@@ -75,29 +52,26 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import EButton from '~/components/ui/e-button'
 
 export default {
   components: {
     EButton,
   },
-  data() {
-    return {
-      drawer: false,
-      items: [
-        {
-          icon: 'apps',
-          title: 'Welcome',
-          to: '/',
-        },
-      ],
-    }
-  },
   computed: {
-    ...mapGetters('user', [
+    ...mapActions('auth', [
+      'setUser',
+    ]),
+    ...mapGetters('auth', [
       'isAuthenticated',
     ]),
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('auth/setUser', null)
+      this.$router.push('/')
+    },
   },
 }
 </script>

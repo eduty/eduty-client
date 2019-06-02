@@ -28,7 +28,7 @@ export default {
     '~/assets/style/app.styl',
   ],
   plugins: [
-    '@/plugins/vuetify',
+    '~/plugins/vuetify',
   ],
   modules: [
     '@nuxtjs/axios',
@@ -47,6 +47,7 @@ export default {
   },
   router: {
     fallback: true,
+    middleware: 'authenticated',
     extendRoutes(routes, resolve) {
       routes.splice(0)
 
@@ -142,7 +143,9 @@ export default {
   },
   build: {
     transpile: ['vuetify/lib'],
-    plugins: [new VuetifyLoaderPlugin()],
+    plugins: [
+      new VuetifyLoaderPlugin(),
+    ],
     loaders: {
       stylus: {
         import: ['~assets/style/variables.styl'],

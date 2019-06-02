@@ -83,7 +83,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('user', {
+    ...mapActions('auth', {
       setUser: 'setUser',
     }),
     onInputChange() {
