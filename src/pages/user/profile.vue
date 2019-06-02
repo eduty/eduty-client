@@ -11,7 +11,6 @@
     />
 
     <v-container
-      v-if="user.campaigns.length"
       grid-list-xl
     >
       <funding-card
@@ -25,6 +24,7 @@
         wrap
       >
         <v-flex
+          v-if="user.campaigns.length"
           md7
         >
           <h2 class="headline mb-4">
@@ -113,10 +113,10 @@ export default {
       return this.user.campaigns.slice(-1)[0]
     },
     campaignMedia() {
-      return this.campaign && this.campaign.campaign_media[0]
+      return this.user.campaigns.length && this.campaign.campaign_media[0]
     },
     campaignPayments() {
-      return (this.campaign && this.campaign.payments) || []
+      return (this.user.campaigns.length && this.campaign.payments) || []
     },
   },
   methods: {

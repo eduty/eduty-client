@@ -43,11 +43,12 @@
         </div>
 
         <v-layout>
-          <e-button :to="{ name: 'user-profile', params: { userId: currentUser.slug } }">
-            Ver minha campanha
-          </e-button>
-          <e-button type="outline" to="/" class="ml-3">
+          <e-button type="outline" to="/">
             Voltar para home
+          </e-button>
+
+          <e-button :to="{ name: 'user-profile', params: { userId: currentUser.slug } }" class="ml-3">
+            Ver minha campanha
           </e-button>
         </v-layout>
       </v-flex>
