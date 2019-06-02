@@ -1,20 +1,26 @@
 <template>
   <div class="user-header">
     <v-container class="user-header__container">
-      <UserAvatar
-        size="170"
-        class="user-header__avatar"
-      />
+      <v-layout>
+        <v-flex md2>
+          <UserAvatar
+            size="170"
+            class="user-header__avatar"
+          />
+        </v-flex>
 
-      <div class="user-header__wrapper">
-        <h1 class="display-3">
-          {{ user.name }}
-        </h1>
+        <v-flex
+          class="user-header__wrapper"
+        >
+          <h1 class="display-3">
+            {{ user.name }}
+          </h1>
 
-        <p class="user-avatar__contrib title">
-          {{ contributors }} contribuidores
-        </p>
-      </div>
+          <p class="user-avatar__contrib title">
+            {{ contributors }} contribuidores
+          </p>
+        </v-flex>
+      </v-layout>
     </v-container>
   </div>
 </template>

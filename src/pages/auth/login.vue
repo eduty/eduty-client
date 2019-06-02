@@ -59,7 +59,6 @@
 </template>
 
 <script>
-import humps from 'lodash-humps'
 import { mapActions } from 'vuex'
 import EButton from '~/components/ui/e-button'
 
@@ -95,10 +94,10 @@ export default {
         this.$axios.$post('/api/auth', {
           email: this.email,
           password: this.password,
-        }).then(({ data }) => {
-          this.setUser(humps(data))
+        }).then((results) => {
+          this.setUser(results)
 
-          this.$router.push({ path: '/for-business' })
+          this.$router.push({ path: `/${results.slug}` })
         }).catch(({ status }) => {
           this.loginError = true
 
