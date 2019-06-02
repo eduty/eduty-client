@@ -5,8 +5,6 @@
       wrap
       align-center
     >
-      <v-flex md1 />
-
       <v-flex md5>
         <strong class="step__text">Passo 1</strong>
         <h2 class="headline mt-1 mb-4">
@@ -40,7 +38,7 @@
             </v-flex>
 
             <v-flex
-              xs12
+              sm12
               md6
             >
               <v-text-field
@@ -63,7 +61,7 @@
             </v-flex>
 
             <v-flex
-              xs12
+              sm12
               md6
             >
               <v-text-field

@@ -107,11 +107,11 @@
                 Crie a sua campanha de estudos
               </h2>
 
-              <e-card-text>
+              <p>
                 Você escolhe o curso e a faculdade dos senhos,
                 monta uma página contando o porque as pessoas devem te ajudar,
                 e disponibiliza informações do seu desempenho para o público que te apoia.
-              </e-card-text>
+              </p>
             </e-card>
           </v-flex>
 
@@ -129,10 +129,10 @@
                 Compartilhe para familiares e amigos
               </h2>
 
-              <e-card-text>
+              <p>
                 Agora é divulgar a sua campanha para seus familiares e amigos,
                 que podem contribuir mensalmente via cartão de crédito ou boleto bancário.
-              </e-card-text>
+              </p>
             </e-card>
           </v-flex>
 
@@ -150,10 +150,10 @@
                 As contribuições pagam sua mensalidade
               </h2>
 
-              <e-card-text>
+              <p>
                 Nós cuidamos do pagamento das contribuições, do investimendo delas em CDI para garantir um crescimento extra
                 e o pagamento das suas mensalidades até o final do seu curso.
-              </e-card-text>
+              </p>
             </e-card>
           </v-flex>
         </v-layout>
