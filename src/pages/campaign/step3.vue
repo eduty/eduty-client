@@ -27,19 +27,32 @@
             label="Conte a sua história"
           />
 
-          <e-button
-            class="step__action mt-3 mr-3"
-            type="outline"
+          <v-layout
+            row
+            wrap
           >
-            Voltar
-          </e-button>
+            <v-flex md5>
+              <e-button
+                block
+                class="mt-3"
+                type="outline"
+                to="/campanha/sonho"
+              >
+                Voltar
+              </e-button>
+            </v-flex>
 
-          <e-button
-            class="step__action mt-3"
-            type="primary"
-          >
-            Próximo passo
-          </e-button>
+            <v-flex md7>
+              <e-button
+                block
+                class="mt-3"
+                type="primary"
+                to="/campanha/sucesso"
+              >
+                Concluir
+              </e-button>
+            </v-flex>
+          </v-layout>
         </v-form>
       </v-flex>
     </v-layout>

@@ -88,22 +88,34 @@
             <img src="http://lorempixel.com/84/48/">
           </e-card>
 
-          <e-button
-            v-if="university.length"
-            class="step__action mt-3 mr-3"
-            type="outline"
-            @click="selectUniversity('')"
+          <v-layout
+            row
+            wrap
           >
-            Voltar
-          </e-button>
+            <v-flex md5>
+              <e-button
+                v-if="university.length"
+                block
+                class="mt-3"
+                type="outline"
+                @click="selectUniversity('')"
+              >
+                Voltar
+              </e-button>
+            </v-flex>
 
-          <e-button
-            v-if="university.length"
-            class="step__action mt-3"
-            type="primary"
-          >
-            Próximo passo
-          </e-button>
+            <v-flex md7>
+              <e-button
+                v-if="university.length"
+                block
+                class="mt-3"
+                type="primary"
+                to="/campanha/historia"
+              >
+                Próximo passo
+              </e-button>
+            </v-flex>
+          </v-layout>
         </v-form>
       </v-flex>
     </v-layout>
@@ -161,9 +173,5 @@ export default {
   .step__card--active & {
     color: $color-accent;
   }
-}
-
-.step__action {
-  width: 270px;
 }
 </style>
