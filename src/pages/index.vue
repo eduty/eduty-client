@@ -3,7 +3,6 @@
     <div class="section">
       <v-container grid-list-xl>
         <v-layout
-          class="pt-3"
           row
           wrap
           align-center
@@ -38,7 +37,7 @@
       src="~/assets/images/home/section-curve.svg"
     >
 
-    <div class="section section--highlight pt-3">
+    <div class="section section--highlight">
       <v-container grid-list-xl>
         <v-layout
           row
@@ -74,7 +73,7 @@
       </v-container>
     </div>
 
-    <div class="section section--highlight pt-3">
+    <div class="section section--highlight">
       <v-container grid-list-xl>
         <h1 class="display-4 mb-5 pb-4">
           Como <span class="section__emphasis">funciona?</span>
@@ -156,7 +155,7 @@
       src="~/assets/images/home/section-curve.svg"
     >
 
-    <div class="section section--last mb-5 pb-5">
+    <div class="section section--last mb-5">
       <v-container grid-list-xl>
         <h1 class="display-4 mb-5">
           Pare de adiar os seus sonhos, comece agora a torná-lo real
@@ -190,6 +189,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.section {
+  padding-top: 112px;
+}
+
 .section--highlight {
   background-color: $color-light;
 }

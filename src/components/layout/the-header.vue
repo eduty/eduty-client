@@ -1,6 +1,6 @@
 <template>
   <header
-    :class="{ 'header--no-delimiter': $route.name.startsWith('campaign') }"
+    :class="{ 'header--no-delimiter': $route.name !== 'home' }"
     class="header"
   >
     <v-toolbar
