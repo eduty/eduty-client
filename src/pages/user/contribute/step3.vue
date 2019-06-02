@@ -3,6 +3,7 @@
     <v-layout
       row
       wrap
+      align-center
     >
       <v-flex md1 />
 
@@ -84,6 +85,21 @@
           </v-flex>
         </v-layout>
       </v-flex>
+
+      <v-flex
+        class="section__image"
+        md6
+      >
+        <img
+          class="section__image-man"
+          src="~/assets/images/man.svg"
+        >
+
+        <img
+          class="section__image-man-id"
+          src="~/assets/images/man-id.svg"
+        >
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -147,5 +163,15 @@ export default {
 
 .step__action {
   width: 270px;
+}
+
+.section__image {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.section__image-man {
+  margin-right: 30px;
+  margin-top: 139px;
 }
 </style>
