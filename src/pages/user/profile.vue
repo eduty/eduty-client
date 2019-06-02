@@ -2,8 +2,9 @@
   <div>
     <user-header
       :contributors="-1"
-      :user="user"
+      :user="currentUser"
     />
+
     <v-container>
       <e-button>
         Eduty-me
@@ -31,8 +32,8 @@ export default {
     UserHeader,
   },
   computed: {
-    ...mapState('user', [
-      'user',
+    ...mapState('auth', [
+      'currentUser',
     ]),
     installments() {
       return [

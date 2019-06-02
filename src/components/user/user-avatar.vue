@@ -26,11 +26,11 @@ export default {
     },
   },
   computed: {
-    ...mapState('user', [
-      'user',
+    ...mapState('auth', [
+      'currentUser',
     ]),
     emailHash() {
-      return md5(this.user.email)
+      return md5(this.currentUser.email)
     },
     imageSource() {
       return `https://www.gravatar.com/avatar/${this.emailHash}?s=${this.size}&d=identicon`

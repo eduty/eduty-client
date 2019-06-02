@@ -63,6 +63,7 @@
 import EButton from '~/components/ui/e-button'
 
 export default {
+  middleware: 'protected',
   components: {
     EButton,
   },
