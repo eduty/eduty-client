@@ -106,6 +106,11 @@ export default {
             component: resolve(__dirname, './src/pages/user/profile.vue'),
           },
           {
+            name: 'user-follow-up',
+            path: 'acompanhamento',
+            component: resolve(__dirname, './src/pages/user/profile.vue'),
+          },
+          {
             path: 'contribuir',
             component: resolve(__dirname, './src/pages/user/contribute/index.vue'),
             children: [
@@ -130,7 +135,7 @@ export default {
                 component: resolve(__dirname, './src/pages/user/contribute/success.vue'),
               },
             ],
-          }
+          },
         ],
       })
     },
