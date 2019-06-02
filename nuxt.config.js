@@ -87,6 +87,11 @@ export default {
             path: 'historia',
             component: resolve(__dirname, './src/pages/campaign/step3.vue'),
           },
+          {
+            name: 'campaign-success',
+            path: 'sucesso',
+            component: resolve(__dirname, './src/pages/campaign/success.vue'),
+          },
         ],
       })
 

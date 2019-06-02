@@ -12,7 +12,6 @@
     >
 
     <div class="section pb-5">
-
       <v-container grid-list-xl>
         <v-flex md5>
           <v-form

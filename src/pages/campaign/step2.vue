@@ -4,9 +4,9 @@
       row
       wrap
     >
-      <v-flex md-1 />
+      <v-flex md1 />
 
-      <v-flex md-5>
+      <v-flex md5>
         <strong class="step__text">Passo 2</strong>
 
         <h2 class="headline mt-1 mb-4">
