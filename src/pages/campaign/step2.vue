@@ -146,6 +146,7 @@ import ECard from '~/components/ui/e-card'
 import coursesMock from '~/assets/data/courses.json'
 
 export default {
+  scrollToTop: true,
   middleware: 'protected',
   components: {
     EButton,

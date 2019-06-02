@@ -109,6 +109,7 @@ import { mapGetters, mapState } from 'vuex'
 import EButton from '~/components/ui/e-button'
 
 export default {
+  scrollToTop: true,
   components: {
     EButton,
   },

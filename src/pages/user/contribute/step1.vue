@@ -162,6 +162,7 @@ import EButton from '~/components/ui/e-button'
 import ECard from '~/components/ui/e-card'
 
 export default {
+  scrollToTop: true,
   components: {
     EButton,
     ECard,
