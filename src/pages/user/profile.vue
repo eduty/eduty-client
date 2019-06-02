@@ -12,17 +12,23 @@
       <FundingProgressBar
         :installments="installments"
       />
+
+      <EButton>
+        Eduty-me
+      </EButton>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
+import { EButton } from '~/components/ui/e-button'
 import { FundingProgressBar } from '~/components/funding'
 import { UserAvatar } from '~/components/user'
 import { mapState } from 'vuex'
 
 export default {
   components: {
+    EButton,
     FundingProgressBar,
     UserAvatar,
   },
