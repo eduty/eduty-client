@@ -1,54 +1,67 @@
 <template>
-  <div>
-    <funding-card />
+  <div class="profile">
+    <user-header
+      :contributors="campaign.payments.length"
+      :user="user"
+    />
 
-    <v-layout
-      class="mt-5"
-      row
-      wrap
-    >
-      <v-flex
-        md7
+    <user-options class="mb-5" />
+
+    <v-container grid-list-xl>
+      <funding-card
+        :user="user"
+        class="mt-3"
+      />
+
+      <v-layout
+        class="mt-5 pt-3"
+        row
+        wrap
       >
-        <h2 class="headline mb-4">
-          Porque contribuir para {{ user.name }}?
-        </h2>
-
-        <media-youtube
-          class="mb-4"
-          :video="campaignMedia.url"
-        />
-
-        <p class="body-2">
-          {{ campaign.description }}
-        </p>
-      </v-flex>
-
-      <v-spacer />
-
-      <v-flex
-        md4
-      >
-        <h2 class="headline mb-4">
-          Últimas contribuições
-        </h2>
-
-        <e-card
-          v-for="payment in campaign.payments"
-          :key="payment"
-          class="profile__card m-3"
+        <v-flex
+          md7
         >
-          <strong>{{ payment.user_name }}</strong> contribuiu com R$ {{ parseInt(payment.value) }}<br>
-          <span>{{ paymentDate(payment.created_at) }}</span>
-        </e-card>
-      </v-flex>
-    </v-layout>
+          <h2 class="headline mb-4">
+            Porque contribuir para {{ user.name }}?
+          </h2>
+
+          <media-youtube
+            class="mb-4"
+            :video="campaignMedia.url"
+          />
+
+          <p class="body-2">
+            {{ campaign.description }}
+          </p>
+        </v-flex>
+
+        <v-spacer />
+
+        <v-flex
+          md4
+        >
+          <h2 class="headline mb-4">
+            Últimas contribuições
+          </h2>
+
+          <e-card
+            v-for="payment in campaign.payments"
+            :key="payment"
+            class="profile__card m-3"
+          >
+            <strong>{{ payment.user_name }}</strong> contribuiu com R$ {{ parseInt(payment.value) }}<br>
+            <span>{{ paymentDate(payment.created_at) }}</span>
+          </e-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
   </div>
 </template>
 
 <script>
 import { FundingCard } from '~/components/funding'
 import { MediaYoutube } from '~/components/media'
+import { UserHeader, UserOptions } from '~/components/user'
 import ECard from '~/components/ui/e-card'
 
 function getMonth(month) {
@@ -63,6 +76,8 @@ export default {
     ECard,
     FundingCard,
     MediaYoutube,
+    UserHeader,
+    UserOptions,
   },
   props: {
     user: {
@@ -93,6 +108,12 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.profile {
+  background-color: $color-light;
+  margin-top: 50px;
+  padding-bottom: 60px;
+}
+
 .profile__card {
   box-shadow: none;
 }

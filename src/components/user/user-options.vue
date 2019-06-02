@@ -3,33 +3,25 @@
     <v-layout>
       <v-flex
         offset-sm3
+        offset-md2
         offset-lg2
+        md7
       >
-        <v-tabs class="tabs">
-          <v-tab
-            class="options-text"
-            :to="{ name: 'user-profile', params: { userId: currentUser.slug } }"
-          >
-            Perfil
-          </v-tab>
-          <v-tab
-            class="options-text"
-            :to="{ name: 'user-follow-up', params: { userId: currentUser.slug } }"
-          >
-            Acompanhamento
-          </v-tab>
-        </v-tabs>
+        <nav class="user-options__nav">
+          <a class="user-options__nav-link user-options__nav-link--active">Perfil</a>
+          <a class="user-options__nav-link">Acompanhamento</a>
+        </nav>
       </v-flex>
 
-      <v-spacer />
-
-      <e-button
-        block
-        :to="{ name: 'user-contribute', params: { userId: currentUser.slug } }"
-        @click="$emit('contribute')"
-      >
-        Contribuir
-      </e-button>
+      <v-flex md3>
+        <e-button
+          block
+          :to="{ name: 'user-contribute', params: { userId: currentUser.slug } }"
+          @click="$emit('contribute')"
+        >
+          Contribuir
+        </e-button>
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
