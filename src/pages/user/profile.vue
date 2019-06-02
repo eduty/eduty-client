@@ -8,20 +8,39 @@
       wrap
     >
       <v-flex
-        md6
+        md7
       >
         <h2 class="headline mb-4">
-          Porque contribuir a Marcela?
+          Porque contribuir para {{ user.name }}?
         </h2>
 
         <media-youtube
           class="mb-4"
-          videoId="9nP6U4uiZLA"
+          :video="campaignMedia.url"
         />
 
         <p class="body-2">
-          With this new design, a website’s branding can be front and center, helping you better understand where the information is coming from and what pages have what you’re looking for.
+          {{ campaign.description }}
         </p>
+      </v-flex>
+
+      <v-spacer />
+
+      <v-flex
+        md4
+      >
+        <h2 class="headline mb-4">
+          Últimas contribuições
+        </h2>
+
+        <e-card
+          v-for="payment in campaign.payments"
+          :key="payment"
+          class="profile__card m-3"
+        >
+          <strong>{{ payment.user_name }}</strong> contribuiu com R$ {{ parseInt(payment.value) }}<br>
+          <span>{{ paymentDate(payment.created_at) }}</span>
+        </e-card>
       </v-flex>
     </v-layout>
   </div>
@@ -30,11 +49,51 @@
 <script>
 import { FundingCard } from '~/components/funding'
 import { MediaYoutube } from '~/components/media'
+import ECard from '~/components/ui/e-card'
+
+function getMonth(month) {
+  return {
+    5: 'maio',
+    6: 'junho',
+  }[month]
+}
 
 export default {
   components: {
+    ECard,
     FundingCard,
     MediaYoutube,
   },
+  props: {
+    user: {
+      type: Object,
+      required: true,
+    },
+  },
+  computed: {
+    campaign() {
+      if (!this.user.campaigns.length) return {}
+
+      return this.user.campaigns[0]
+    },
+    campaignMedia() {
+      if (!this.campaign.campaign_media.length) return {}
+
+      return this.campaign.campaign_media[0]
+    },
+  },
+  methods: {
+    paymentDate(date) {
+      date = new Date('2019-06-02T04:24:45.028Z')
+
+      return `${date.getDate()} de ${getMonth(date.getMonth())} de ${date.getFullYear()}`
+    },
+  },
 }
 </script>
+
+<style lang="stylus" scoped>
+.profile__card {
+  box-shadow: none;
+}
+</style>

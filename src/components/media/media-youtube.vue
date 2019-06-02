@@ -12,9 +12,14 @@
 export default {
   name: 'MediaYoutube',
   props: {
-    videoId: {
+    video: {
       required: true,
       type: String,
+    },
+  },
+  computed: {
+    videoId() {
+      return this.video.match(/^.*(youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#&?]*).*/)[2]
     },
   },
 }
