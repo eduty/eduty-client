@@ -45,9 +45,23 @@
           </h2>
 
           <e-card
+            class="profile__card mb-3"
+          >
+            <strong>Marcelo Fraga</strong> contribuiu com R$ 50<br>
+            <span>30 de maio de 2019</span>
+          </e-card>
+
+          <e-card
+            class="profile__card mb-3"
+          >
+            <strong>Luã Vaz</strong> contribuiu com R$ 20<br>
+            <span>2 de junho de 2019</span>
+          </e-card>
+
+          <e-card
             v-for="payment in campaign.payments"
             :key="payment"
-            class="profile__card m-3"
+            class="profile__card mb-3"
           >
             <strong>{{ payment.user_name }}</strong> contribuiu com R$ {{ parseInt(payment.value) }}<br>
             <span>{{ paymentDate(payment.created_at) }}</span>
@@ -89,7 +103,7 @@ export default {
     campaign() {
       if (!this.user.campaigns.length) return {}
 
-      return this.user.campaigns[0]
+      return this.user.campaigns.slice(-1)[0]
     },
     campaignMedia() {
       if (!this.campaign.campaign_media.length) return {}
