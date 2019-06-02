@@ -171,7 +171,6 @@ export default {
   },
   beforeMount() {
     if (this.isAuthenticated) {
-      console.log(this.currentUser)
       this.name = this.currentUser.name
       this.email = this.currentUser.email
       this.phone = this.currentUser.phone_number
