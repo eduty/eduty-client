@@ -105,6 +105,32 @@ export default {
             path: '',
             component: resolve(__dirname, './src/pages/user/profile.vue'),
           },
+          {
+            path: 'contribuir',
+            component: resolve(__dirname, './src/pages/user/contribute/index.vue'),
+            children: [
+              {
+                name: 'user-contribute',
+                path: '',
+                component: resolve(__dirname, './src/pages/user/contribute/step1.vue'),
+              },
+              {
+                name: 'user-contribute-step2',
+                path: 'pagamento',
+                component: resolve(__dirname, './src/pages/user/contribute/step2.vue'),
+              },
+              {
+                name: 'user-contribute-step3',
+                path: 'valor',
+                component: resolve(__dirname, './src/pages/user/contribute/step3.vue'),
+              },
+              {
+                name: 'user-contribute-success',
+                path: 'sucesso',
+                component: resolve(__dirname, './src/pages/user/contribute/success.vue'),
+              },
+            ],
+          }
         ],
       })
     },

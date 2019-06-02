@@ -1,0 +1,148 @@
+<template>
+  <v-container grid-list-xl>
+    <v-layout
+      row
+      wrap
+    >
+      <v-flex md-1 />
+
+      <v-flex md-11>
+        <strong class="step__text">Passo 1</strong>
+        <h2 class="headline mt-1 mb-4">
+          Como deseja contribuir?
+        </h2>
+
+        <v-layout
+          row
+          wrap
+        >
+          <v-flex
+            xs12
+            sm8
+            md5
+          >
+            <v-form
+              ref="form"
+              v-model="valid"
+            >
+              <v-text-field
+                v-model="name"
+                label="Qual o seu nome completo?"
+                :rules="[rules.required]"
+              />
+
+              <v-text-field
+                v-model="cpf"
+                label="Qual o seu CPF?"
+                :rules="[rules.required]"
+              />
+
+              <v-text-field
+                v-model="address"
+                label="Qual o seu endereço?"
+                :rules="[rules.required]"
+              />
+
+              <v-layout
+                row
+                wrap
+              >
+                <v-flex
+                  xs12
+                  md6
+                >
+                  <v-text-field
+                    v-model="city"
+                    label="Qual sua cidade?"
+                    :rules="[rules.required]"
+                  />
+                </v-flex>
+
+                <v-flex
+                  xs12
+                  md6
+                >
+                  <v-text-field
+                    v-model="state"
+                    label="Qual o estado?"
+                    :rules="[rules.required]"
+                  />
+                </v-flex>
+              </v-layout>
+
+              <e-button
+                class="step__action mt-3"
+                @click="submit"
+              >
+                Próximo passo
+              </e-button>
+            </v-form>
+          </v-flex>
+        </v-layout>
+      </v-flex>
+    </v-layout>
+  </v-container>
+</template>
+
+<script>
+import axios from 'axios'
+import EButton from '~/components/ui/e-button'
+
+export default {
+  components: {
+    EButton,
+  },
+  data() {
+    return {
+      city: '',
+      confirmPassword: '',
+      email: '',
+      emailRules: [
+        v => !!v || 'Campo obrigatório',
+        v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail deve ser válido',
+      ],
+      name: '',
+      password: '',
+      passwordRules: [
+        v => !!v || 'Campo obrigatório',
+      ],
+      phone: '',
+      rules: {
+        required: value => !!value || 'Campo obrigatório.',
+      },
+      state: '',
+      valid: false,
+    }
+  },
+  methods: {
+    nextStep() {
+      this.$router.push('/campanha/sonho')
+    },
+    submit() {
+      if (this.$refs.form.validate() && this.password === this.confirmPassword) {
+        axios.post('/api/users', {
+          city: this.city,
+          email: this.email,
+          name: this.name,
+          password: this.password,
+          phone: this.phone,
+          state: this.state,
+        }).then(() => {
+          this.nextStep()
+        })
+      }
+    },
+  },
+}
+</script>
+
+<style lang="stylus" scoped>
+.step__text {
+  color: $color-gray;
+  text-transform: uppercase;
+}
+
+.step__action {
+  width: 270px;
+}
+</style>
