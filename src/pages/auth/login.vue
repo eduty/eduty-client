@@ -3,6 +3,13 @@
     <v-flex>
       <h1>Entrar</h1>
 
+      <v-alert
+        :value="loginError"
+        type="error"
+      >
+        E-mail ou senha incorretos!
+      </v-alert>
+
       <v-card>
         <v-card-text class="pt-4">
           <v-form
@@ -14,6 +21,7 @@
               label="E-mail"
               required
               :rules="emailRules"
+              @input="onInputChange"
             />
 
             <v-text-field
@@ -26,6 +34,7 @@
               :type="e1 ? 'text' : 'password'"
               :rules="passwordRules"
               @click:append="() => (e1 = !e1)"
+              @input="onInputChange"
             />
 
             <v-layout justify-space-between>
@@ -41,17 +50,6 @@
           </v-form>
         </v-card-text>
       </v-card>
-
-      <v-dialog
-        v-model="dialog"
-        max-width="250"
-      >
-        <v-card>
-          <v-card-text>
-            E-mail ou senha incorretos!
-          </v-card-text>
-        </v-card>
-      </v-dialog>
     </v-flex>
   </v-layout>
 </template>
@@ -64,7 +62,7 @@ import { mapActions } from 'vuex'
 export default {
   data() {
     return {
-      dialog: false,
+      loginError: false,
       valid: false,
       e1: false,
       password: '',
@@ -82,6 +80,9 @@ export default {
     ...mapActions('user', {
       setUser: 'setUser',
     }),
+    onInputChange() {
+      this.loginError = false
+    },
     submit() {
       if (this.$refs.form.validate()) {
         axios.post('/api/auth', {
@@ -92,7 +93,7 @@ export default {
 
           this.$router.push({ path: '/for-business' })
         }).catch(({ status }) => {
-          this.dialog = true
+          this.loginError = true
 
           Promise.reject(status)
         })
