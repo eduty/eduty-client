@@ -7,14 +7,26 @@
     >
 
     <div class="progress-card__installments progress-card__installments--guaranteed">
-      <div class="display-4">
+      <div class="display-4 figure__figure">
         {{ installments.howManyPaid }}
+      </div>
+      <div class="figure__title">
+        mensalidades garantidas
+      </div>
+      <div class="figure__details">
+        R$ CARTIADO recebidos
       </div>
     </div>
 
     <div class="progress-card__installments progress-card__installments--pending">
-      <div class="display-4">
+      <div class="display-4 figure__figure">
         {{ installments.howMany - installments.howManyPaid }}
+      </div>
+      <div class="figure__title">
+        mensalidades pendentes
+      </div>
+      <div class="figure__details">
+        R$ CARTIADO em aberto
       </div>
     </div>
 
@@ -28,7 +40,7 @@
 </template>
 
 <script>
-import { FundingProgressBar } from '~/components/funding'
+import FundingProgressBar from '~/components/funding/funding-progress-bar.vue'
 
 export default {
   components: {
