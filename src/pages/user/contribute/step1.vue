@@ -8,7 +8,7 @@
 
       <v-flex md5>
         <strong class="step__text">Passo 1</strong>
-        <h2 class="headline mt-1 mb-4">
+        <h2 class="headline mt-1 mb-5">
           Como deseja contribuir?
         </h2>
 
