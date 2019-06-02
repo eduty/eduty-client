@@ -84,7 +84,7 @@ export default {
           },
           {
             name: 'campaign-step3',
-            path: 'porque',
+            path: 'historia',
             component: resolve(__dirname, './src/pages/campaign/step3.vue'),
           },
         ],
