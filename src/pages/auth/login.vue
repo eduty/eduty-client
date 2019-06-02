@@ -98,7 +98,7 @@ export default {
         }).then((results) => {
           this.setUser(results)
 
-          this.$router.push({ path: '/for-business' })
+          this.$router.push({ path: `/${results.slug}` })
         }).catch(({ status }) => {
           this.loginError = true
 
