@@ -258,7 +258,7 @@ export default {
   justify-content: center;
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: auto;
   margin-bottom: -220px;
   text-align: center;
   z-index: 1;
