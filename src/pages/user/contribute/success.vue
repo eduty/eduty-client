@@ -12,13 +12,13 @@
         </h2>
 
         <p class="body-2">
-          Você também pode ajudar a Marcela compartilhando a
+          Você também pode ajudar {{ user.name }} compartilhando a
           campanha dela para seus familiares e amigos
         </p>
 
         <v-text-field
           label="Link da sua campanha"
-          value="http://eduty.me/heitormiranda"
+          :value="`http://eduty.me/${user.slug}`"
           disabled
         />
 
@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import EButton from '~/components/ui/e-button'
 
 export default {
@@ -68,6 +69,11 @@ export default {
       turns: ['Manhã', 'Tarde', 'Noite'],
       modalidades: ['Presencial', 'EAD'],
     }
+  },
+  computed: {
+    ...mapState('user-page', [
+      'user',
+    ]),
   },
   methods: {
   },

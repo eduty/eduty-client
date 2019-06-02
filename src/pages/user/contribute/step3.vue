@@ -5,7 +5,10 @@
       wrap
       align-center
     >
-      <v-flex md5>
+      <v-flex
+        sm12
+        md5
+      >
         <strong class="step__text">Passo 3</strong>
         <h2 class="headline mt-1 mb-5">
           Complete seus dados :)
