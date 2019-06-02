@@ -25,4 +25,4 @@ export default {
 }
 </script>
 
-<style src="./funding-progress-bar.css" scoped>
+<style src="./funding-progress-bar.styl" lang="stylus" scoped>
