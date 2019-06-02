@@ -41,6 +41,17 @@
           </v-form>
         </v-card-text>
       </v-card>
+
+      <v-dialog
+        v-model="dialog"
+        max-width="250"
+      >
+        <v-card>
+          <v-card-text>
+            E-mail ou senha incorretos!
+          </v-card-text>
+        </v-card>
+      </v-dialog>
     </v-flex>
   </v-layout>
 </template>
@@ -53,6 +64,7 @@ import { mapActions } from 'vuex'
 export default {
   data() {
     return {
+      dialog: false,
       valid: false,
       e1: false,
       password: '',
@@ -79,7 +91,11 @@ export default {
           this.setUser(humps(data))
 
           this.$router.push({ path: '/for-business' })
-        }).catch(({ status }) => Promise.reject(status))
+        }).catch(({ status }) => {
+          this.dialog = true
+
+          Promise.reject(status)
+        })
       }
     },
     clear() {
