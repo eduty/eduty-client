@@ -5,9 +5,7 @@
       wrap
       align-start
     >
-      <v-flex md1 />
-
-      <v-flex md5>
+      <v-flex md6>
         <strong class="step__text">Passo 1</strong>
         <h2 class="headline mt-1 mb-5">
           Como deseja contribuir?
