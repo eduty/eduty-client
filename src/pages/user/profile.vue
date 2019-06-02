@@ -55,27 +55,21 @@
             Últimas contribuições
           </h2>
 
+          <template v-if="campaignPayments && campaignPayments.length">
+            <e-card
+              v-for="(payment, index) in campaignPayments"
+              :key="index"
+              class="profile__card mb-3"
+            >
+              <strong>{{ payment.user_name }}</strong> contribuiu com R$ {{ parseInt(payment.value) }}<br>
+              <span>{{ paymentDate(payment.created_at) }}</span>
+            </e-card>
+          </template>
           <e-card
             class="profile__card mb-3"
+            v-else
           >
-            <strong>Marcelo Fraga</strong> contribuiu com R$ 50<br>
-            <span>30 de maio de 2019</span>
-          </e-card>
-
-          <e-card
-            class="profile__card mb-3"
-          >
-            <strong>Luã Vaz</strong> contribuiu com R$ 20<br>
-            <span>2 de junho de 2019</span>
-          </e-card>
-
-          <e-card
-            v-for="(payment, index) in campaignPayments"
-            :key="index"
-            class="profile__card mb-3"
-          >
-            <strong>{{ payment.user_name }}</strong> contribuiu com R$ {{ parseInt(payment.value) }}<br>
-            <span>{{ paymentDate(payment.created_at) }}</span>
+            Ninguém contribuiu ainda.
           </e-card>
         </v-flex>
       </v-layout>
