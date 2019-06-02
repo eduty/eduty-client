@@ -2,7 +2,7 @@
   <v-container>
     <v-layout>
       <v-flex offset-md2>
-        <v-tabs>
+        <v-tabs class="tabs">
           <v-tab
             class="options-text"
             :to="{ name: 'user-profile', params: { userId: user.slug } }"

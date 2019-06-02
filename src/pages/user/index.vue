@@ -41,3 +41,9 @@ export default {
   },
 }
 </script>
+
+<style lang="stylus">
+.v-content {
+  background-color: $color-light !important;
+}
+</style>
