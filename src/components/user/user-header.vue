@@ -8,7 +8,7 @@
 
       <div class="user-header__wrapper">
         <h1 class="display-3">
-          {{ user.fullName }}
+          {{ user.name }}
         </h1>
 
         <p class="user-avatar__contrib title">
@@ -35,7 +35,7 @@ export default {
       type: Object,
       required: true,
       validator: value => [
-        'fullName',
+        'name',
       ].every(item => value.hasOwnProperty(item)),
     },
   },
