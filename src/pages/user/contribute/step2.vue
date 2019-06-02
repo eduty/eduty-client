@@ -5,8 +5,6 @@
       wrap
       align-start
     >
-      <v-flex md1 />
-
       <v-flex md5>
         <strong class="step__text">Passo 2</strong>
         <h2 class="headline mt-1 mb-5">
@@ -98,7 +96,7 @@
 
       <v-flex
         class="section__image"
-        md6
+        md7
       >
         <img
           class="section__image-undraw-transfer-money"
