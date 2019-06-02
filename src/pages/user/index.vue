@@ -7,8 +7,8 @@
 
     <user-options />
 
-    <v-container>
-      <nuxt-child />
+    <v-container grid-list-xl>
+      <nuxt-child :user="user" />
     </v-container>
   </div>
 </template>
