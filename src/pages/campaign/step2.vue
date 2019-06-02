@@ -3,6 +3,7 @@
     <v-layout
       row
       wrap
+      align-center
     >
       <v-flex md1 />
 
@@ -118,6 +119,21 @@
           </v-layout>
         </v-form>
       </v-flex>
+
+      <v-flex
+        class="section__image"
+        md6
+      >
+        <img
+          class="section__image-list"
+          src="~/assets/images/list.svg"
+        >
+
+        <img
+          class="section__image-woman"
+          src="~/assets/images/woman.svg"
+        >
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -174,5 +190,16 @@ export default {
   .step__card--active & {
     color: $color-accent;
   }
+}
+
+.section__image {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -60px;
+}
+
+.section__image-list {
+  margin-right: 5px;
+  margin-top: -65px;
 }
 </style>
