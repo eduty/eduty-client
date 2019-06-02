@@ -178,13 +178,15 @@ export default {
     },
     submit() {
       if (this.$refs.form.validate() && this.password === this.confirmPassword) {
+        const _password = this.password ? { password: this.password } : {}
+
         this.$axios.$post('/api/users', {
           city: this.city,
           email: this.email,
           name: this.name,
-          password: this.password,
           phone: this.phone,
           state: this.state,
+          ..._password,
         }).then(() => {
           this.nextStep()
         })
