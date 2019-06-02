@@ -1,6 +1,6 @@
 <template>
   <div>
-    <the-other-header />
+    <the-header />
     <h1>Criando sua campanha</h1>
 
     <nuxt-child />
@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import { TheOtherHeader } from '~/components/layout'
+import { TheHeader } from '~/components/layout'
 
 export default {
   components: {
-    TheOtherHeader,
+    TheHeader,
   },
 }
 </script>
