@@ -1,8 +1,8 @@
 <template>
-  <v-app>
+  <v-app class="layout">
     <the-header />
 
-    <v-content style="padding-top: 140px;">
+    <v-content class="layout__main">
       <v-container>
         <nuxt />
       </v-container>
@@ -22,3 +22,9 @@ export default {
   },
 }
 </script>
+
+<style lang="stylus" scoped>
+.layout__main {
+  padding-top: 110px;
+}
+</style>
