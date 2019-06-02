@@ -18,10 +18,12 @@
           ref="form"
           v-model="valid"
         >
-          <v-text-field
+          <v-select
             v-model="course"
-            label="Qual a profissão do seus sonhos?"
-            required
+            :items="coursesMock"
+            label="Qual o curso dos seus sonhos?"
+            outlined
+            @change="onCourseChange"
           />
 
           <v-layout
@@ -34,8 +36,7 @@
             >
               <v-select
                 :items="turns"
-                label="Que horas você quer estudar?"
-                outlined
+                label="Em que período você quer estudar?"
               />
             </v-flex>
 
@@ -51,72 +52,60 @@
             </v-flex>
           </v-layout>
 
-          <div class="mt-2 mb-3">
-            <strong class="step__text">Selecione onde você quer estudar</strong>
-          </div>
-
-          <e-card
-            v-if="!university.length || university === 'anhanguera'"
-            class="step__card mb-4"
-            :class="{
-              ['step__card--active']: university === 'anhanguera',
-            }"
-            size="small"
-            @click="selectUniversity('anhanguera')"
-          >
-            <div>
-              <strong class="step__card-course">Direito</strong>
-              na Anhanguera
+          <template v-if="coursesList">
+            <div class="mt-2 mb-3">
+              <strong class="step__text">Selecione onde você quer estudar</strong>
             </div>
 
-            <img src="http://lorempixel.com/84/48/">
-          </e-card>
+            <e-card
+              v-for="availableChoice in availableChoices"
+              :key="availableChoice.id"
+              class="step__card mb-4"
+              :class="{
+                ['step__card--active']: courseId === availableChoice.id,
+              }"
+              size="small"
+              @click="selectCourse(availableChoice.id)"
+            >
+              <div>
+                <strong class="step__card-course">{{ availableChoice.name }}</strong>
+                na {{ availableChoice.institution.name }} ({{ availableChoice.campus.name }})
+              </div>
 
-          <e-card
-            v-if="!university.length || university === 'unip'"
-            class="step__card mb-4"
-            :class="{
-              ['step__card--active']: university === 'unip',
-            }"
-            size="small"
-            @click="selectUniversity('unip')"
-          >
-            <div>
-              <strong class="step__card-course">Direito</strong>
-              na Unip
-            </div>
-
-            <img src="http://lorempixel.com/84/48/">
-          </e-card>
-
-          <v-layout
-            row
-            wrap
-          >
-            <v-flex md5>
-              <e-button
-                v-if="university.length"
-                block
-                class="mt-3"
-                type="outline"
-                @click="selectUniversity('')"
+              <img
+                class="step__card-course-icon"
+                :src="availableChoice.institution.logo_url"
               >
-                Voltar
-              </e-button>
-            </v-flex>
+            </e-card>
 
-            <v-flex md7>
-              <e-button
-                v-if="university.length"
-                block
-                class="mt-3"
-                type="primary"
-                to="/campanha/historia"
-              >
-                Próximo passo
-              </e-button>
-            </v-flex>
-          </v-layout>
+            <v-layout
+              v-if="courseId"
+              row
+              wrap
+            >
+              <v-flex md5>
+                <e-button
+                  block
+                  class="mt-3"
+                  type="outline"
+                  @click="selectCourse(null)"
+                >
+                  Voltar
+                </e-button>
+              </v-flex>
+
+              <v-flex md7>
+                <e-button
+                  block
+                  class="mt-3"
+                  type="primary"
+                  @click="submit"
+                >
+                  Próximo passo
+                </e-button>
+              </v-flex>
+            </v-layout>
+          </template>
         </v-form>
       </v-flex>
 
@@ -139,8 +128,10 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import EButton from '~/components/ui/e-button'
 import ECard from '~/components/ui/e-card'
+import coursesMock from '~/assets/data/courses.json'
 
 export default {
   middleware: 'protected',
@@ -150,17 +141,46 @@ export default {
   },
   data() {
     return {
-      university: '',
+      availableChoices: null,
+      course: '',
+      courseId: null,
+      coursesList: null,
+      valid: false,
       turns: ['Manhã', 'Tarde', 'Noite'],
-      modalidades: ['Presencial', 'EAD'],
+      rules: {
+        required: value => !!value || 'Campo obrigatório.',
+      },
+      modalidades: ['Presencial', 'A distância'],
+      coursesMock,
     }
   },
+  async mounted() {
+    this.coursesList = await this.$axios.$get('/api/courses')
+    this.availableChoices = this.coursesList.slice(0, 4)
+  },
   methods: {
-    selectUniversity(university) {
-      if (this.university === university) {
-        this.university = ''
+    ...mapActions('campaign', {
+      setCourse: 'setCourse',
+    }),
+    onCourseChange() {
+      if (this.course) {
+        this.availableChoices = this.coursesList.filter(c => c.name === this.course).slice(0, 4)
+
+        this.courseId = null
       } else {
-        this.university = university
+        this.availableChoices = this.coursesList.slice(0, 4)
+      }
+    },
+    selectCourse(courseId) {
+      this.courseId = courseId
+    },
+    submit() {
+      if (this.$refs.form.validate()) {
+        const selectedCourse = this.coursesList.filter(c => c.id === this.courseId)[0]
+
+        this.setCourse(selectedCourse)
+
+        this.$router.push('/campanha/historia')
       }
     },
   },
@@ -201,5 +221,14 @@ export default {
 .section__image-list {
   margin-right: 5px;
   margin-top: -65px;
+}
+
+.step__card-course-icon {
+  height: 48px;
+  width: 84px;
+}
+
+.step__action {
+  width: 270px;
 }
 </style>
