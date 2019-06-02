@@ -16,8 +16,18 @@
               Você foca nos estudos, e nós ajudamos com a mensalidade
             </h1>
 
-            <e-button to="/campanha">
+            <e-button
+              :type="campaigns.length ? 'outline' : 'primary'"
+              to="/campanha"
+            >
               Iniciar minha campanha
+            </e-button>
+            <e-button
+              v-if="isAuthenticated && campaigns.length"
+              :to="{ name: 'user-profile', params: { userId: currentUser.slug } }"
+              class="ml-3"
+            >
+              Ver minha campanha
             </e-button>
           </v-flex>
 
@@ -173,6 +183,7 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex'
 import EButton from '~/components/ui/e-button'
 import ECard from '~/components/ui/e-card'
 
@@ -180,6 +191,15 @@ export default {
   components: {
     EButton,
     ECard,
+  },
+  computed: {
+    ...mapState('auth', [
+      'currentUser',
+    ]),
+    ...mapGetters('auth', [
+      'isAuthenticated',
+      'campaigns',
+    ]),
   },
   async fetch({ $axios }) {
     const result = await $axios.$get('/api/ping')
