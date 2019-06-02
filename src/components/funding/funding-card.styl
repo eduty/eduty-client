@@ -1,5 +1,18 @@
 .progress-card {
+  align-content: end;
   background-color: white;
   border-radius: 8px;
+  display: grid;
+  grid-template: 'img txt1 txt2' auto 'img prog prog' auto / 4fr 4fr 4fr;
   height: 274px;
+}
+
+.progress-card__img {
+  grid-area: img;
+}
+
+.progress-card__bar {
+  grid-area: prog;
+  margin-bottom: 47px;
+  margin-right: 32px;
 }

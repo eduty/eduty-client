@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="background">
     <user-header
       :contributors="-1"
       :user="user"
@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style lang="stylus">
-.v-content {
-  background-color: $color-light !important;
+.background {
+  background-color: $color-light;
 }
 </style>
