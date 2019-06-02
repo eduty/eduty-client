@@ -19,8 +19,8 @@
         E-mail ou senha incorretos!
       </v-alert>
 
-      <v-card>
-        <v-card-text class="pt-4">
+      <v-container grid-list-xl>
+        <v-flex md5>
           <v-form
             ref="form"
             v-model="valid"
@@ -37,38 +37,35 @@
               v-model="password"
               label="Senha"
               min="8"
-              counter
               required
-              :append-icon="e1 ? 'visibility' : 'visibility_off'"
-              :type="e1 ? 'text' : 'password'"
+              type="password"
               :rules="passwordRules"
-              @click:append="() => (e1 = !e1)"
               @input="onInputChange"
             />
 
-            <v-layout justify-space-between>
-              <v-btn
-                :class="{ 'blue darken-4 white--text' : valid, disabled: !valid }"
-                @click="submit"
-              >
-                Login
-              </v-btn>
-
-              <a href="">Forgot Password</a>
-            </v-layout>
+            <e-button
+              class="step__action mt-3 mr-3"
+              block
+              @click="submit"
+            >
+              Entrar
+            </e-button>
           </v-form>
-        </v-card-text>
-      </v-card>
+        </v-flex>
+      </v-container>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 import humps from 'lodash-humps'
 import { mapActions } from 'vuex'
+import EButton from '~/components/ui/e-button'
 
 export default {
+  components: {
+    EButton,
+  },
   data() {
     return {
       loginError: false,
@@ -94,7 +91,7 @@ export default {
     },
     submit() {
       if (this.$refs.form.validate()) {
-        axios.post('/api/auth', {
+        this.$axios.$post('/api/auth', {
           email: this.email,
           password: this.password,
         }).then(({ data }) => {
