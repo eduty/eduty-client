@@ -1,7 +1,5 @@
 <template>
   <div>
-    <the-other-header />
-
     <v-container>
       <h1 class="headline">
         Criando sua campanha
@@ -13,19 +11,14 @@
       src="~/assets/images/home/section-curve.svg"
     >
 
-    <div class="section">
+    <div class="section pb-5">
       <nuxt-child />
     </div>
   </div>
 </template>
 
 <script>
-import { TheOtherHeader } from '~/components/layout'
-
 export default {
-  components: {
-    TheOtherHeader,
-  },
 }
 </script>
 

@@ -23,7 +23,7 @@
               counter
               required
               :append-icon="e1 ? 'visibility' : 'visibility_off'"
-              :type="e1 ? 'password' : 'text'"
+              :type="e1 ? 'text' : 'password'"
               :rules="passwordRules"
               @click:append="() => (e1 = !e1)"
             />
@@ -46,6 +46,10 @@
 </template>
 
 <script>
+import axios from 'axios'
+import humps from 'lodash-humps'
+import { mapActions } from 'vuex'
+
 export default {
   data() {
     return {
@@ -63,10 +67,19 @@ export default {
     }
   },
   methods: {
+    ...mapActions('user', {
+      setUser: 'setUser',
+    }),
     submit() {
       if (this.$refs.form.validate()) {
-        console.log('OPA')
-        // this.$refs.form.$el.submit()
+        axios.post('/api/auth', {
+          email: this.email,
+          password: this.password,
+        }).then(({ data }) => {
+          this.setUser(humps(data))
+
+          this.$router.push({ path: '/for-business' })
+        }).catch(({ status }) => Promise.reject(status))
       }
     },
     clear() {
