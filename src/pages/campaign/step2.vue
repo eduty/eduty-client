@@ -39,8 +39,8 @@
                 md6
               >
                 <v-select
-                  :items="turns"
                   v-model="turn"
+                  :items="turns"
                   label="Em que período você quer estudar?"
                   @change="onCourseChange"
                 />
@@ -51,8 +51,8 @@
                 md6
               >
                 <v-select
-                  :items="modalidades"
                   v-model="modalidade"
+                  :items="modalidades"
                   label="Qual modalidade?"
                   outlined
                   @change="onCourseChange"

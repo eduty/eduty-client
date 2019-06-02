@@ -67,7 +67,7 @@
               block
               class="mt-3"
               type="outline"
-              to="/marcelo/contribuir"
+              @click="lastStep"
             >
               Voltar
             </e-button>
@@ -78,7 +78,7 @@
               block
               class="mt-3"
               type="primary"
-              to="/marcelo/contribuir/dados"
+              @click="submit"
             >
               Próximo passo
             </e-button>
@@ -105,6 +105,7 @@
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex'
 import EButton from '~/components/ui/e-button'
 
 export default {
@@ -113,33 +114,65 @@ export default {
   },
   data() {
     return {
-      cpf: '',
-      address: '',
-      city: '',
       confirmPassword: '',
       email: '',
       emailRules: [
         v => !!v || 'Campo obrigatório',
         v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail deve ser válido',
       ],
-      name: '',
       password: '',
-      passwordRules: [
-        v => !!v || 'Campo obrigatório',
-      ],
       phone: '',
       rules: {
         required: value => !!value || 'Campo obrigatório.',
       },
-      state: '',
       valid: false,
     }
   },
+  computed: {
+    ...mapGetters('auth', [
+      'isAuthenticated',
+    ]),
+    ...mapState('auth', [
+      'currentUser',
+    ]),
+    ...mapState('user-page', {
+      campaignId: state => state.user.campaigns[0].id,
+      userPageSlug: state => state.user.slug,
+    }),
+    ...mapState('payment', [
+      'payment',
+      'value',
+    ]),
+  },
+  beforeMount() {
+    if (this.isAuthenticated) {
+      this.email = this.currentUser.email
+      this.phone = this.currentUser.phone_number
+    }
+  },
   methods: {
+    lastStep() {
+      this.$router.push(`/${this.userPageSlug}/contribuir/dados`)
+    },
     nextStep() {
-      this.$router.push('/marcelo/contribuir/sucesso')
+      this.$router.push(`/${this.userPageSlug}/contribuir/sucesso`)
     },
     submit() {
+      if (this.$refs.form.validate()) {
+        const paymentParams = {
+          campaign_id: this.campaignId,
+          kind: this.payment.kind,
+          method: this.payment.method,
+          user_id: this.currentUser && this.currentUser.id,
+          value: this.value,
+        }
+
+        console.log(paymentParams)
+
+        this.$axios.$post('/api/pay', paymentParams).then(() => {
+          this.nextStep()
+        })
+      }
     },
   },
 }

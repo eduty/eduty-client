@@ -13,6 +13,14 @@
           Qual valor?
         </h2>
 
+        <v-alert
+          class="mb-4"
+          :value="valueError"
+          type="error"
+        >
+          Preencha um valor!
+        </v-alert>
+
         <v-form
           ref="form"
           v-model="valid"
@@ -69,7 +77,7 @@
               block
               class="mt-3"
               type="outline"
-              to="/marcelo/contribuir"
+              @click="lastStep"
             >
               Voltar
             </e-button>
@@ -80,7 +88,7 @@
               block
               class="mt-3"
               type="primary"
-              to="/marcelo/contribuir/dados"
+              @click="submit"
             >
               Próximo passo
             </e-button>
@@ -102,6 +110,7 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 import EButton from '~/components/ui/e-button'
 import ECard from '~/components/ui/e-card'
 
@@ -113,38 +122,42 @@ export default {
   data() {
     return {
       values: [5, 10, 20, 40, 80],
-      cpf: '',
       paymentValue: null,
-      address: '',
-      city: '',
-      confirmPassword: '',
-      email: '',
-      emailRules: [
-        v => !!v || 'Campo obrigatório',
-        v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail deve ser válido',
-      ],
-      name: '',
-      password: '',
-      passwordRules: [
-        v => !!v || 'Campo obrigatório',
-      ],
-      phone: '',
       rules: {
         required: value => !!value || 'Campo obrigatório.',
       },
-      state: '',
       valid: false,
+      valueError: false,
     }
   },
+  computed: {
+    ...mapState('user-page', {
+      userPageSlug: state => state.user.slug,
+    }),
+  },
   methods: {
+    ...mapActions('payment', {
+      setValue: 'setValue',
+    }),
+    lastStep() {
+      this.$router.push(`/${this.userPageSlug}/contribuir`)
+    },
     nextStep() {
-      this.$router.push('/campanha/sonho')
+      this.$router.push(`/${this.userPageSlug}/contribuir/dados`)
     },
     submit() {
+      if (this.$refs.form.validate() && this.paymentValue) {
+        this.setValue(this.paymentValue)
+
+        this.nextStep()
+      } else {
+        this.valueError = true
+      }
     },
     setPaymentValue(value) {
-      console.log('OPA')
       this.paymentValue = value
+
+      this.valueError = false
     },
   },
 }
