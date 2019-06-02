@@ -11,7 +11,7 @@
       src="~/assets/images/home/section-curve.svg"
     >
 
-    <div class="section pb-5">
+    <div class="section">
       <nuxt-child />
     </div>
   </div>
@@ -26,7 +26,7 @@ export default {
 <style lang="stylus" scoped>
 .section {
   background-color: $color-light;
-  padding: 52px 0 112px;
+  padding: 52px 0 122px;
 }
 
 .section__curve {

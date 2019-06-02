@@ -5,10 +5,8 @@
       wrap
     >
       <v-flex
-        lg6
-        md12
-        order-md2
-        order-lg1
+        sm12
+        md5
       >
         <strong class="step__text">Passo 2</strong>
 
@@ -118,12 +116,12 @@
         </v-form>
       </v-flex>
 
+      <v-spacer class="hidden-sm-and-down" />
+
       <v-flex
-        class="section__image"
-        lg6
-        md12
-        order-md1
-        order-lg2
+        class="section__image hidden-sm-and-down"
+        sm12
+        md6
       >
         <img
           class="section__image-list"
@@ -131,7 +129,7 @@
         >
 
         <img
-          class="section__image-woman"
+          class="section__image-woman hidden-md-and-down"
           src="~/assets/images/woman.svg"
         >
       </v-flex>

@@ -6,8 +6,9 @@
         wrap
       >
         <v-flex
+          class="hidden-sm-and-down"
           lg2
-          sm3
+          md3
         >
           <UserAvatar
             :user="user"
@@ -18,7 +19,7 @@
 
         <v-flex
           lg10
-          sm9
+          md9
           class="user-header__wrapper"
         >
           <h1 class="display-3">

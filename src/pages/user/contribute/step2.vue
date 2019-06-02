@@ -95,7 +95,7 @@
       </v-flex>
 
       <v-flex
-        class="section__image"
+        class="section__image hidden-sm-and-down"
         md7
       >
         <img

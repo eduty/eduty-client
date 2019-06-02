@@ -65,7 +65,7 @@
           </v-flex>
 
           <v-flex
-            class="section__image"
+            class="section__image hidden-sm-and-down"
             lg7
             sm12
             order-sm1

@@ -23,6 +23,6 @@ export default {
 
 <style lang="stylus" scoped>
 .layout__main {
-  padding-top: 50px;
+  padding-top: 60px;
 }
 </style>

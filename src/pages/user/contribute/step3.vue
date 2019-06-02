@@ -5,8 +5,6 @@
       wrap
       align-center
     >
-      <v-flex md1 />
-
       <v-flex md5>
         <strong class="step__text">Passo 3</strong>
         <h2 class="headline mt-1 mb-5">
@@ -93,12 +91,14 @@
         </v-layout>
       </v-flex>
 
+      <v-spacer class="hidden-sm-and-down" />
+
       <v-flex
-        class="section__image"
+        class="section__image hidden-sm-and-down"
         md6
       >
         <img
-          class="section__image-man"
+          class="section__image-man hidden-md-and-down"
           src="~/assets/images/man.svg"
         >
 

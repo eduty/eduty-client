@@ -5,7 +5,10 @@
       wrap
       align-center
     >
-      <v-flex md6>
+      <v-flex
+        sm12
+        md5
+      >
         <strong class="step__text">Passo 3</strong>
 
         <h2 class="headline mt-1 mb-4">
@@ -56,15 +59,13 @@
         </v-form>
       </v-flex>
 
+      <v-spacer class="hidden-sm-and-down" />
+
       <v-flex
-        class="section__image"
+        class="section__image hidden-sm-and-down"
+        sm12
         md6
       >
-        <!-- <img
-          class="section__image-list"
-          src="~/assets/images/list.svg"
-        > -->
-
         <img
           class="section__image-woman-balloon"
           src="~/assets/images/woman-balloon.svg"
@@ -136,11 +137,5 @@ export default {
 .section__image {
   display: flex;
   justify-content: flex-end;
-  margin-top: -60px;
 }
-
-// .section__image-list {
-//   margin-right: 5px;
-//   margin-top: -65px;
-// }
 </style>

@@ -34,7 +34,7 @@
         <v-toolbar-items class="header__nav">
           <nuxt-link
             v-if="!forBusiness"
-            class="header__link"
+            class="header__link hidden-sm-and-down"
             to="/for-business"
           >
             Eduty for business
