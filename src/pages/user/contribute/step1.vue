@@ -3,6 +3,7 @@
     <v-layout
       row
       wrap
+      align-start
     >
       <v-flex md1 />
 
@@ -135,6 +136,16 @@
           Próximo passo
         </e-button>
       </v-flex>
+
+      <v-flex
+        class="section__image"
+        md6
+      >
+        <img
+          class="section__image-undraw-transfer-money"
+          src="~/assets/images/undraw-transfer-money.svg"
+        >
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -205,5 +216,11 @@ export default {
 
 .step__action {
   width: 270px;
+}
+
+.section__image {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 60px;
 }
 </style>
