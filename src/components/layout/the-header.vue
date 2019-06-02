@@ -97,4 +97,4 @@ export default {
 }
 </script>
 
-<style src="./header.styl" lang="stylus" scoped></style>
+<style src="./the-header.styl" lang="stylus" scoped></style>
