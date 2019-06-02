@@ -1,7 +1,7 @@
 <template>
   <div class="profile">
     <user-header
-      :contributors="campaign.payments.length"
+      :contributors="campaignPayments.length"
       :user="user"
     />
 
@@ -59,8 +59,8 @@
           </e-card>
 
           <e-card
-            v-for="payment in campaign.payments"
-            :key="payment"
+            v-for="(payment, index) in campaignPayments"
+            :key="index"
             class="profile__card mb-3"
           >
             <strong>{{ payment.user_name }}</strong> contribuiu com R$ {{ parseInt(payment.value) }}<br>
@@ -109,6 +109,9 @@ export default {
       if (!this.campaign.campaign_media.length) return {}
 
       return this.campaign.campaign_media[0]
+    },
+    campaignPayments() {
+      return (this.campaign && this.campaign.payments) || []
     },
   },
   methods: {
