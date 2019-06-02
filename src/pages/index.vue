@@ -57,15 +57,15 @@
           <v-flex
             xs12
             sm8
-            md6
+            md8
           >
             <img src="~/assets/images/home/undraw-savings.svg">
           </v-flex>
 
           <v-flex
             xs12
-            sm8
-            md6
+            sm4
+            md4
           >
             <h1 class="display-4 mb-5">
               O que é o <span class="section__emphasis">eduty?</span>
