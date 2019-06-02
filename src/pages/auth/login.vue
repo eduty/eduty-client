@@ -18,7 +18,11 @@
           wrap
           align-center
         >
-          <v-flex md5>
+          <v-flex
+            lg5
+            sm12
+            order-sm2
+          >
             <v-form
               ref="form"
               v-model="valid"
@@ -61,7 +65,9 @@
 
           <v-flex
             class="section__image"
-            md7
+            lg7
+            sm12
+            order-sm1
           >
             <img
               class="section__image-man"
