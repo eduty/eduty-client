@@ -1,9 +1,21 @@
 <template>
   <div>
     <the-other-header />
-    <h1>Criando sua campanha</h1>
 
-    <nuxt-child />
+    <v-container>
+      <h1 class="headline">
+        Criando sua campanha
+      </h1>
+    </v-container>
+
+    <img
+      class="section__curve"
+      src="~/assets/images/home/section-curve.svg"
+    >
+
+    <div class="section">
+      <nuxt-child />
+    </div>
   </div>
 </template>
 
@@ -16,3 +28,14 @@ export default {
   },
 }
 </script>
+
+<style lang="stylus" scoped>
+.section {
+  background-color: $color-light;
+}
+
+.section__curve {
+  display: block;
+  width: 100%;
+}
+</style>

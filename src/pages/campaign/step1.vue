@@ -1,0 +1,138 @@
+<template>
+  <v-container grid-list-xl>
+    <strong class="step__text">Passo 1</strong>
+    <h2 class="headline mt-1 mb-4">
+      Quem é você?
+    </h2>
+
+    <v-layout
+      row
+      wrap
+    >
+      <v-flex
+        xs12
+        sm8
+        md5
+      >
+        <v-form
+          ref="form"
+          v-model="valid"
+        >
+          <v-text-field
+            v-model="name"
+            label="Qual o seu nome?"
+            required
+          />
+
+          <v-layout
+            row
+            wrap
+          >
+            <v-flex
+              xs12
+              md6
+            >
+              <v-text-field
+                v-model="email"
+                label="Qual o seu e-mail"
+                type="email"
+                required
+                :rules="emailRules"
+              />
+            </v-flex>
+
+            <v-flex
+              xs12
+              md6
+            >
+              <v-text-field
+                v-model="phone"
+                label="Qual o seu telefone?"
+                type="tel"
+                required
+              />
+            </v-flex>
+
+            <v-flex
+              xs12
+              md6
+            >
+              <v-text-field
+                v-model="city"
+                label="Em qual cidade mora?"
+                required
+              />
+            </v-flex>
+
+            <v-flex
+              xs12
+              md6
+            >
+              <v-text-field
+                v-model="state"
+                label="Qual estado?"
+                required
+              />
+            </v-flex>
+
+            <v-flex
+              xs12
+              md6
+            >
+              <v-text-field
+                v-model="password"
+                label="Digite uma senha"
+                type="password"
+                min="8"
+                required
+                :rules="passwordRules"
+              />
+            </v-flex>
+
+            <v-flex
+              xs12
+              md6
+            >
+              <v-text-field
+                v-model="confirmPassword"
+                label="Confirmar sua senha"
+                type="password"
+                min="8"
+                required
+                :rules="passwordRules"
+              />
+            </v-flex>
+          </v-layout>
+
+          <e-button
+            class="step__action mt-3"
+            type="primary"
+          >
+            Próximo passo
+          </e-button>
+        </v-form>
+      </v-flex>
+    </v-layout>
+  </v-container>
+</template>
+
+<script>
+import EButton from '~/components/ui/e-button'
+
+export default {
+  components: {
+    EButton,
+  },
+}
+</script>
+
+<style lang="stylus" scoped>
+.step__text {
+  color: $color-gray;
+  text-transform: uppercase;
+}
+
+.step__action {
+  width: 270px;
+}
+</style>

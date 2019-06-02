@@ -187,7 +187,6 @@ export default {
 <style lang="stylus" scoped>
 .section--highlight {
   background-color: $color-light;
-  box-shadow: -50rem 0 0 $color-light, 50rem 0 0 $color-light;
 }
 
 .section--last {
