@@ -5,9 +5,12 @@
       wrap
       align-center
     >
-      <v-flex md1 />
-
-      <v-flex md5>
+      <v-flex
+        lg6
+        md12
+        order-md2
+        order-lg1
+      >
         <strong class="step__text">Passo 2</strong>
 
         <h2 class="headline mt-1 mb-4">
@@ -111,7 +114,10 @@
 
       <v-flex
         class="section__image"
-        md6
+        lg6
+        md12
+        order-md1
+        order-lg2
       >
         <img
           class="section__image-list"
