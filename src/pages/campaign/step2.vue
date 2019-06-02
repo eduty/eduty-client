@@ -3,7 +3,6 @@
     <v-layout
       row
       wrap
-      align-center
     >
       <v-flex
         lg6
@@ -21,41 +20,48 @@
           ref="form"
           v-model="valid"
         >
-          <v-select
-            v-model="course"
-            :items="coursesMock"
-            label="Qual o curso dos seus sonhos?"
-            outlined
-            @change="onCourseChange"
-          />
+          <div v-if="!courseId">
+            <v-select
+              v-model="course"
+              :items="coursesMock"
+              label="Qual o curso dos seus sonhos?"
+              outlined
+              :disabled="!coursesList"
+              @change="onCourseChange"
+            />
 
-          <v-layout
-            row
-            wrap
-          >
-            <v-flex
-              xs12
-              md6
+            <v-layout
+              row
+              wrap
             >
-              <v-select
-                :items="turns"
-                label="Em que período você quer estudar?"
-              />
-            </v-flex>
+              <v-flex
+                xs12
+                md6
+              >
+                <v-select
+                  :items="turns"
+                  v-model="turn"
+                  label="Em que período você quer estudar?"
+                  @change="onCourseChange"
+                />
+              </v-flex>
 
-            <v-flex
-              xs12
-              md6
-            >
-              <v-select
-                :items="modalidades"
-                label="Qual modalidade?"
-                outlined
-              />
-            </v-flex>
-          </v-layout>
+              <v-flex
+                xs12
+                md6
+              >
+                <v-select
+                  :items="modalidades"
+                  v-model="modalidade"
+                  label="Qual modalidade?"
+                  outlined
+                  @change="onCourseChange"
+                />
+              </v-flex>
+            </v-layout>
+          </div>
 
-          <template v-if="coursesList">
+          <template v-if="availableChoices">
             <div class="mt-2 mb-3">
               <strong class="step__text">Selecione onde você quer estudar</strong>
             </div>
@@ -151,6 +157,8 @@ export default {
       course: '',
       courseId: null,
       coursesList: null,
+      modalidade: null,
+      turn: null,
       valid: false,
       turns: ['Manhã', 'Tarde', 'Noite'],
       rules: {
@@ -162,23 +170,26 @@ export default {
   },
   async mounted() {
     this.coursesList = await this.$axios.$get('/api/courses')
-    this.availableChoices = this.coursesList.slice(0, 4)
   },
   methods: {
     ...mapActions('campaign', {
       setCourse: 'setCourse',
     }),
     onCourseChange() {
-      if (this.course) {
+      if (this.course && this.modalidade && this.turn) {
         this.availableChoices = this.coursesList.filter(c => c.name === this.course).slice(0, 4)
 
         this.courseId = null
       } else {
-        this.availableChoices = this.coursesList.slice(0, 4)
+        this.availableChoices = null
       }
     },
     selectCourse(courseId) {
-      this.courseId = courseId
+      if (this.courseId === courseId) {
+        this.courseId = null
+      } else {
+        this.courseId = courseId
+      }
     },
     submit() {
       if (this.$refs.form.validate()) {
@@ -221,7 +232,6 @@ export default {
 .section__image {
   display: flex;
   justify-content: flex-end;
-  margin-top: -60px;
 }
 
 .section__image-list {
@@ -230,8 +240,8 @@ export default {
 }
 
 .step__card-course-icon {
-  height: 48px;
-  width: 84px;
+  max-height: 48px;
+  max-width: 84px;
 }
 
 .step__action {
