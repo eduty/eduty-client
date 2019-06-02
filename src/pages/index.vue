@@ -17,7 +17,9 @@
               Você foca nos estudos, e nós ajudamos com a mensalidade
             </h1>
 
-            <e-button to="/campanha">Iniciar minha campanha</e-button>
+            <e-button to="/campanha">
+              Iniciar minha campanha
+            </e-button>
           </v-flex>
 
           <v-flex

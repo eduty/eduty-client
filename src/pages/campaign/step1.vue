@@ -123,7 +123,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import EButton from '~/components/ui/e-button'
 
 export default {
@@ -158,7 +157,7 @@ export default {
     },
     submit() {
       if (this.$refs.form.validate() && this.password === this.confirmPassword) {
-        axios.post('/api/users', {
+        this.$axios.$post('/api/users', {
           city: this.city,
           email: this.email,
           name: this.name,
