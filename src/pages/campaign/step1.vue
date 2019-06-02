@@ -3,122 +3,127 @@
     <v-layout
       row
       wrap
+      align-center
     >
       <v-flex md1 />
 
-      <v-flex md11>
+      <v-flex md5>
         <strong class="step__text">Passo 1</strong>
         <h2 class="headline mt-1 mb-4">
           Quem é você?
         </h2>
 
-        <v-layout
-          row
-          wrap
+        <v-form
+          ref="form"
+          v-model="valid"
         >
-          <v-flex
-            xs12
-            sm8
-            md5
+          <v-text-field
+            v-model="name"
+            label="Qual o seu nome?"
+            :rules="[rules.required]"
+          />
+
+          <v-layout
+            row
+            wrap
           >
-            <v-form
-              ref="form"
-              v-model="valid"
+            <v-flex
+              xs12
+              md6
             >
               <v-text-field
-                v-model="name"
-                label="Qual o seu nome?"
+                v-model="email"
+                label="Qual o seu e-mail"
+                type="email"
+                :rules="emailRules"
+              />
+            </v-flex>
+
+            <v-flex
+              xs12
+              md6
+            >
+              <v-text-field
+                v-model="phone"
+                label="Qual o seu telefone?"
+                type="tel"
                 :rules="[rules.required]"
               />
+            </v-flex>
 
-              <v-layout
-                row
-                wrap
-              >
-                <v-flex
-                  xs12
-                  md6
-                >
-                  <v-text-field
-                    v-model="email"
-                    label="Qual o seu e-mail"
-                    type="email"
-                    :rules="emailRules"
-                  />
-                </v-flex>
+            <v-flex
+              xs12
+              md6
+            >
+              <v-text-field
+                v-model="city"
+                label="Em qual cidade mora?"
+                :rules="[rules.required]"
+              />
+            </v-flex>
 
-                <v-flex
-                  xs12
-                  md6
-                >
-                  <v-text-field
-                    v-model="phone"
-                    label="Qual o seu telefone?"
-                    type="tel"
-                    :rules="[rules.required]"
-                  />
-                </v-flex>
+            <v-flex
+              xs12
+              md6
+            >
+              <v-text-field
+                v-model="state"
+                label="Qual estado?"
+                :rules="[rules.required]"
+              />
+            </v-flex>
 
-                <v-flex
-                  xs12
-                  md6
-                >
-                  <v-text-field
-                    v-model="city"
-                    label="Em qual cidade mora?"
-                    :rules="[rules.required]"
-                  />
-                </v-flex>
+            <v-flex
+              v-if="!isAuthenticated"
+              xs12
+              md6
+            >
+              <v-text-field
+                v-model="password"
+                label="Digite uma senha"
+                type="password"
+                min="8"
+                :rules="passwordRules"
+              />
+            </v-flex>
 
-                <v-flex
-                  xs12
-                  md6
-                >
-                  <v-text-field
-                    v-model="state"
-                    label="Qual estado?"
-                    :rules="[rules.required]"
-                  />
-                </v-flex>
+            <v-flex
+              v-if="!isAuthenticated"
+              xs12
+              md6
+            >
+              <v-text-field
+                v-model="confirmPassword"
+                label="Confirmar sua senha"
+                type="password"
+                min="8"
+                :rules="passwordRules"
+              />
+            </v-flex>
+          </v-layout>
 
-                <v-flex
-                  v-if="!isAuthenticated"
-                  xs12
-                  md6
-                >
-                  <v-text-field
-                    v-model="password"
-                    label="Digite uma senha"
-                    type="password"
-                    min="8"
-                    :rules="passwordRules"
-                  />
-                </v-flex>
+          <e-button
+            class="step__action mt-3"
+            @click="submit"
+          >
+            Próximo passo
+          </e-button>
+        </v-form>
+      </v-flex>
 
-                <v-flex
-                  v-if="!isAuthenticated"
-                  xs12
-                  md6
-                >
-                  <v-text-field
-                    v-model="confirmPassword"
-                    label="Confirmar sua senha"
-                    type="password"
-                    min="8"
-                    :rules="passwordRules"
-                  />
-                </v-flex>
-              </v-layout>
+      <v-flex
+        class="section__image"
+        md6
+      >
+        <img
+          class="section__image-man"
+          src="~/assets/images/man.svg"
+        >
 
-              <e-button
-                class="step__action mt-3"
-                @click="submit"
-              >
-                Próximo passo
-              </e-button>
-            </v-form>
-          </v-flex>
-        </v-layout>
+        <img
+          class="section__image-man-id"
+          src="~/assets/images/man-id.svg"
+        >
       </v-flex>
     </v-layout>
   </v-container>
@@ -204,5 +209,15 @@ export default {
 
 .step__action {
   width: 270px;
+}
+
+.section__image {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.section__image-man {
+  margin-right: 30px;
+  margin-top: 139px;
 }
 </style>

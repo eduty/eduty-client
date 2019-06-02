@@ -13,46 +13,67 @@
 
     <div class="section pb-5">
       <v-container grid-list-xl>
-        <v-flex md5>
-          <v-form
-            ref="form"
-            v-model="valid"
+        <v-layout
+          row
+          wrap
+          align-center
+        >
+          <v-flex md5>
+            <v-form
+              ref="form"
+              v-model="valid"
+            >
+              <v-alert
+                class="mb-4"
+                :value="loginError"
+                type="error"
+              >
+                E-mail ou senha incorretos!
+              </v-alert>
+
+              <v-text-field
+                v-model="email"
+                label="E-mail"
+                required
+                :rules="emailRules"
+                @input="onInputChange"
+              />
+
+              <v-text-field
+                v-model="password"
+                label="Senha"
+                min="8"
+                required
+                type="password"
+                :rules="passwordRules"
+                @input="onInputChange"
+              />
+
+              <e-button
+                class="step__action mt-3 mr-3"
+                block
+                @click="submit"
+              >
+                Entrar
+              </e-button>
+            </v-form>
+          </v-flex>
+
+          <v-flex
+            class="section__image"
+            md7
           >
-            <v-alert
-              class="mb-4"
-              :value="loginError"
-              type="error"
+            <img
+              class="section__image-man"
+              src="~/assets/images/man.svg"
             >
-              E-mail ou senha incorretos!
-            </v-alert>
 
-            <v-text-field
-              v-model="email"
-              label="E-mail"
-              required
-              :rules="emailRules"
-              @input="onInputChange"
-            />
-
-            <v-text-field
-              v-model="password"
-              label="Senha"
-              min="8"
-              required
-              type="password"
-              :rules="passwordRules"
-              @input="onInputChange"
-            />
-
-            <e-button
-              class="step__action mt-3 mr-3"
-              block
-              @click="submit"
+            <img
+              class="section__image-man-id"
+              src="~/assets/images/man-id.svg"
             >
-              Entrar
-            </e-button>
-          </v-form>
-        </v-flex>
+          </v-flex>
+        </v-layout>
       </v-container>
     </div>
   </div>
@@ -120,5 +141,15 @@ export default {
 .section__curve {
   display: block;
   width: 100%;
+}
+
+.section__image {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.section__image-man {
+  margin-right: 30px;
+  margin-top: 139px;
 }
 </style>
