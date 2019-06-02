@@ -1,7 +1,10 @@
 <template>
   <div class="user-header">
     <v-container class="user-header__container">
-      <v-layout>
+      <v-layout
+        row
+        wrap
+      >
         <v-flex md2>
           <UserAvatar
             size="170"
@@ -10,15 +13,16 @@
         </v-flex>
 
         <v-flex
+          md10
           class="user-header__wrapper"
         >
           <h1 class="display-3">
             {{ user.name }}
           </h1>
 
-          <p class="user-avatar__contrib title">
+          <strong class="user-avatar__contrib title">
             {{ contributors }} contribuidores
-          </p>
+          </strong>
         </v-flex>
       </v-layout>
     </v-container>

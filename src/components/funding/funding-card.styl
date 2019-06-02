@@ -21,9 +21,8 @@
 
 .progress-card__installments {
   align-self: end;
-  display: grid;
-  grid-template: 'figure title' 1fr 'figure details' 1fr / 1fr 5fr;
-  grid-column-gap: 16px;
+  display: flex;
+  align-items: center;
 }
 
 .progress-card__installments--guaranteed {
@@ -37,17 +36,18 @@
 }
 
 .figure__figure {
-  grid-area: figure;
   text-align: right;
-  }
+  margin-right: 16px;
+}
 
 .figure__title {
-  grid-area: title;
+  display: block;
+  // grid-area: title;
   color: $color-primary;
-  font-weight: bold;
-  font-size: 18px;
-  align-self: center;
-  }
+  // font-weight: bold;
+  // font-size: 18px;
+  // align-self: center;
+}
 
 .figure__details {
   grid-area: details;

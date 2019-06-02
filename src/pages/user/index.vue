@@ -1,27 +1,13 @@
 <template>
-  <div class="background">
-    <user-header
-      :contributors="-1"
-      :user="user"
-    />
-
-    <user-options />
-
-    <v-container grid-list-xl>
-      <nuxt-child :user="user" />
-    </v-container>
+  <div>
+    <nuxt-child :user="user" />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import { UserHeader, UserOptions } from '~/components/user'
 
 export default {
-  components: {
-    UserHeader,
-    UserOptions,
-  },
   computed: {
     ...mapState('user-page', [
       'user',
@@ -33,9 +19,3 @@ export default {
   },
 }
 </script>
-
-<style lang="stylus">
-.background {
-  background-color: $color-light;
-}
-</style>
