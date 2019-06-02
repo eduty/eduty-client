@@ -19,3 +19,15 @@
 .header__logo {
   display: inline-flex;
 }
+
+.header__link {
+  color: $color-accent;
+  font-size: 18px;
+  text-decoration none;
+
+  &:hover,
+  &:active {
+    color: darken($color-accent, 30%);
+    transition: color .4s ease;
+  }
+}

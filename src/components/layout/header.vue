@@ -46,10 +46,13 @@
           >
         </nuxt-link>
 
-        <v-spacer></v-spacer>
+        <v-spacer />
 
         <v-toolbar-items>
-          <nuxt-link to="/for-business">
+          <nuxt-link
+            class="header__link"
+            to="/for-business"
+          >
             Eduty for business
           </nuxt-link>
         </v-toolbar-items>
