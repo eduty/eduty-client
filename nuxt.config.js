@@ -58,6 +58,12 @@ export default {
       })
 
       routes.push({
+        name: 'for-business',
+        path: '/for-business',
+        component: resolve(__dirname, './src/pages/for-business/index.vue'),
+      })
+
+      routes.push({
         name: 'login',
         path: '/entrar',
         component: resolve(__dirname, './src/pages/auth/login.vue'),
