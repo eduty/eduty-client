@@ -4,9 +4,9 @@
       row
       wrap
     >
-      <v-flex md-1 />
+      <v-flex md1 />
 
-      <v-flex md-11>
+      <v-flex md11>
         <strong class="step__text">Passo 1</strong>
         <h2 class="headline mt-1 mb-4">
           Quem é você?
@@ -82,6 +82,7 @@
                 </v-flex>
 
                 <v-flex
+                  v-if="!isAuthenticated"
                   xs12
                   md6
                 >
@@ -95,6 +96,7 @@
                 </v-flex>
 
                 <v-flex
+                  v-if="!isAuthenticated"
                   xs12
                   md6
                 >
@@ -123,6 +125,7 @@
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex'
 import EButton from '~/components/ui/e-button'
 
 export default {
@@ -151,19 +154,39 @@ export default {
       valid: false,
     }
   },
+  computed: {
+    ...mapGetters('auth', [
+      'isAuthenticated',
+    ]),
+    ...mapState('auth', [
+      'currentUser',
+    ]),
+  },
+  beforeMount() {
+    if (this.isAuthenticated) {
+      console.log(this.currentUser)
+      this.name = this.currentUser.name
+      this.email = this.currentUser.email
+      this.phone = this.currentUser.phone_number
+      this.city = this.currentUser.city
+      this.state = this.currentUser.state
+    }
+  },
   methods: {
     nextStep() {
       this.$router.push('/campanha/sonho')
     },
     submit() {
       if (this.$refs.form.validate() && this.password === this.confirmPassword) {
+        const _password = this.password ? { password: this.password } : {}
+
         this.$axios.$post('/api/users', {
           city: this.city,
           email: this.email,
           name: this.name,
-          password: this.password,
           phone: this.phone,
           state: this.state,
+          ..._password,
         }).then(() => {
           this.nextStep()
         })
