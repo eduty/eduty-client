@@ -3,7 +3,7 @@
   background-color: white;
   border-radius: 8px;
   display: grid;
-  grid-template: 'img txt1 txt2' auto 'img prog prog' auto / 4fr 4fr 4fr;
+  grid-template: 'img txt1 txt2' 1fr 'img prog prog' 1fr / 4fr 4fr 4fr;
   height: 274px;
 }
 
@@ -16,6 +16,10 @@
   grid-area: prog;
   margin-bottom: 47px;
   margin-right: 32px;
+}
+
+.progress-card__installments {
+  align-self: end;
 }
 
 .progress-card__installments--guaranteed {
