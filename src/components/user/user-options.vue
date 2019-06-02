@@ -1,7 +1,10 @@
 <template>
   <v-container>
     <v-layout>
-      <v-flex offset-md2>
+      <v-flex
+        offset-sm3
+        offset-lg2
+      >
         <v-tabs class="tabs">
           <v-tab
             class="options-text"
