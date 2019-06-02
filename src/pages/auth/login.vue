@@ -1,8 +1,17 @@
 <template>
-  <v-layout>
-    <v-flex>
-      <h1>Entrar</h1>
+  <div>
+    <v-container>
+      <h1 class="headline">
+        Acessando sua conta
+      </h1>
+    </v-container>
 
+    <img
+      class="section__curve"
+      src="~/assets/images/home/section-curve.svg"
+    >
+
+    <div class="section pb-5">
       <v-alert
         :value="loginError"
         type="error"
@@ -50,8 +59,8 @@
           </v-form>
         </v-card-text>
       </v-card>
-    </v-flex>
-  </v-layout>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -105,3 +114,14 @@ export default {
   },
 }
 </script>
+
+<style lang="stylus" scoped>
+.section {
+  background-color: $color-light;
+}
+
+.section__curve {
+  display: block;
+  width: 100%;
+}
+</style>
