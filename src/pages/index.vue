@@ -190,6 +190,7 @@ import EButton from '~/components/ui/e-button'
 import ECard from '~/components/ui/e-card'
 
 export default {
+  scrollToTop: true,
   components: {
     EButton,
     ECard,
@@ -260,7 +261,7 @@ export default {
   justify-content: center;
   display: flex;
   flex-direction: column;
-  height: 456px;
+  height: auto;
   margin-bottom: -220px;
   text-align: center;
   z-index: 1;

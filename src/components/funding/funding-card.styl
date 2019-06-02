@@ -42,6 +42,11 @@
 .progress-card__installments--guaranteed {
   grid-area: txt1;
   color: $color-accent;
+  margin-left: 32px;
+
+  @media (min-width: $grid-breakpoints.lg) {
+    margin-left: 0;
+  }
 }
 
 .progress-card__installments--pending {

@@ -79,6 +79,7 @@ import EButton from '~/components/ui/e-button'
 import { mapState } from 'vuex'
 
 export default {
+  scrollToTop: true,
   middleware: 'protected',
   components: {
     EButton,

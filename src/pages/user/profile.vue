@@ -126,6 +126,7 @@ export default {
       return `${date.getDate()} de ${getMonth(date.getMonth())} de ${date.getFullYear()}`
     },
   },
+  scrollToTop: true,
 }
 </script>
 

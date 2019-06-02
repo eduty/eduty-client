@@ -27,12 +27,14 @@
         {{ installments.howMany - installments.howManyPaid }}
       </div>
 
-      <strong class="figure__title">
-        mensalidades pendentes
-      </strong>
+      <div>
+        <strong class="figure__title">
+          mensalidades pendentes
+        </strong>
 
-      <div class="figure__details">
-        R$ 15.335 em aberto
+        <div class="figure__details">
+          R$ 15.335 em aberto
+        </div>
       </div>
     </div>
 
