@@ -8,23 +8,16 @@
       </v-container>
     </v-content>
 
-    <v-footer
-      app
-      class="pa-3"
-    >
-      <v-container>
-        <v-spacer />
-        <div>&copy; {{ new Date().getFullYear() }}</div>
-      </v-container>
-    </v-footer>
+    <the-footer />
   </v-app>
 </template>
 
 <script>
-import { TheHeader } from '~/components/layout'
+import { TheFooter, TheHeader } from '~/components/layout'
 
 export default {
   components: {
+    TheFooter,
     TheHeader,
   },
 }
