@@ -16,6 +16,10 @@
       <EButton>
         Eduty-me
       </EButton>
+
+      <EButton type="outline">
+        Edit this page
+      </EButton>
     </v-flex>
   </v-layout>
 </template>

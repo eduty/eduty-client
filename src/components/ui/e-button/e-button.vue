@@ -16,6 +16,7 @@ export default {
       default: 'primary',
       type: String,
       validator: value => [
+        'outline',
         'primary',
       ].includes(value),
     },
