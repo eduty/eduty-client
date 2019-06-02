@@ -1,5 +1,5 @@
 export const state = () => ({
-  user: null,
+  user: {}
 })
 
 export const actions = {
@@ -15,5 +15,6 @@ export const mutations = {
 }
 
 export const getters = {
-  isAuthenticated: state => !!state.user,
+  isAuthenticated: state => !!state.user.id,
+  campaign: ({ user: campaigns }) => campaigns[0],
 }
