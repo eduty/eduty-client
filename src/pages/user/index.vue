@@ -2,7 +2,7 @@
   <div class="background">
     <user-header
       :contributors="-1"
-      :user="currentUser"
+      :user="user"
     />
 
     <user-options />
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapState } from 'vuex'
 import { UserHeader, UserOptions } from '~/components/user'
 
 export default {
@@ -23,21 +23,13 @@ export default {
     UserOptions,
   },
   computed: {
-    ...mapState('auth', [
-      'currentUser',
+    ...mapState('user-page', [
+      'user',
     ]),
   },
-  mounted() {
-    if (this.currentUser) return
-
-    this.$axios.$get('/api/users/1')
-      .then(this.setUser)
-      .catch(({ status }) => Promise.reject(status))
-  },
-  methods: {
-    ...mapActions('auth', [
-      'setUser',
-    ]),
+  async fetch({ $axios, params, store }) {
+    const result = await $axios.$get(`/api/users/${params.userId}`)
+    await store.dispatch('user-page/setUser', result)
   },
 }
 </script>

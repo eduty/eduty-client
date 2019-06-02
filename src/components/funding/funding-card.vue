@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <funding-progress-bar
+    <FundingProgressBar
       :installments="installments"
       :total="100"
       :progress="40"
