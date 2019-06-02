@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { EButton } from '~/components/ui/e-button'
+import EButton from '~/components/ui/e-button'
 import { FundingProgressBar } from '~/components/funding'
 import { UserAvatar } from '~/components/user'
 import { mapState } from 'vuex'

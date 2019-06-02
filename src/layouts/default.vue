@@ -2,7 +2,7 @@
   <v-app>
     <Header />
 
-    <v-content style="padding-top: 80px;">
+    <v-content style="padding-top: 140px;">
       <v-container>
         <nuxt />
       </v-container>

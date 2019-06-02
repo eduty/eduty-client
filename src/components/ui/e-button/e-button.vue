@@ -1,8 +1,9 @@
 <template>
   <v-btn
+    v-bind="$attrs"
     depressed
-    :class="{ [`e-button--${type}`]: type !== 'primary' }"
     class="e-button"
+    :class="[`e-button--${type}`]"
   >
     <slot />
   </v-btn>

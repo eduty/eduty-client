@@ -1,8 +1,11 @@
 .e-button {
+  min-height: 48px;
+}
+
+.e-button--primary:not(.v-btn--icon):not(.v-btn--flat) {
+  color: $shades.white;
+  font-weight: 700;
   background-image: linear-gradient(to right, $color-accent, #00c6ff);
-  border-radius: 4px;
-  color: #fff;
-  text-transform: none;
 }
 
 .e-button--outline:not(.v-btn--icon):not(.v-btn--flat) {
@@ -10,4 +13,11 @@
   background-image: none;
   border: 2px solid $color-accent;
   color: $color-accent;
+
+  &:hover,
+  &:active {
+    color: $shades.white;
+    background-color: $color-accent;
+    border-color: $color-accent;
+  }
 }
