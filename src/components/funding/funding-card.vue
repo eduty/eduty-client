@@ -6,6 +6,18 @@
       class="progress-card__img"
     >
 
+    <div class="progress-card__installments progress-card__installments--guaranteed">
+      <div class="display-4">
+        {{ installments.howManyPaid }}
+      </div>
+    </div>
+
+    <div class="progress-card__installments progress-card__installments--pending">
+      <div class="display-4">
+        {{ installments.howMany - installments.howManyPaid }}
+      </div>
+    </div>
+
     <funding-progress-bar
       :installments="installments"
       :total="100"
@@ -16,7 +28,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import { FundingProgressBar } from '~/components/funding'
 
 export default {
@@ -24,10 +35,6 @@ export default {
     FundingProgressBar,
   },
   computed: {
-    ...mapGetters('user', {
-      courseTotalPrice: ({ campaign }) => parseFloat((campaign.course || { price: '0' }).price, 10),
-      totalRaised: ({ campaign }) => campaign.currentBalance,
-    }),
     installments() {
       return {
         howMany: 33,

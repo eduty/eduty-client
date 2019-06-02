@@ -5,13 +5,13 @@
         <v-tabs class="tabs">
           <v-tab
             class="options-text"
-            :to="{ name: 'user-profile', params: { userId: user.slug } }"
+            :to="{ name: 'user-profile', params: { userId: currentUser.slug } }"
           >
             Perfil
           </v-tab>
           <v-tab
             class="options-text"
-            :to="{ name: 'user-follow-up', params: { userId: user.slug } }"
+            :to="{ name: 'user-follow-up', params: { userId: currentUser.slug } }"
           >
             Acompanhamento
           </v-tab>
@@ -22,7 +22,7 @@
 
       <e-button
         block
-        :to="{ name: 'user-contribute', params: { userId: user.slug } }"
+        :to="{ name: 'user-contribute', params: { userId: currentUser.slug } }"
         @click="$emit('contribute')"
       >
         Contribuir
@@ -40,8 +40,8 @@ export default {
     EButton,
   },
   computed: {
-    ...mapState('user', [
-      'user',
+    ...mapState('auth', [
+      'currentUser',
     ]),
   },
 }

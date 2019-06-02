@@ -2,7 +2,7 @@
   <div class="background">
     <user-header
       :contributors="-1"
-      :user="user"
+      :user="currentUser"
     />
 
     <user-options />
@@ -23,19 +23,19 @@ export default {
     UserOptions,
   },
   computed: {
-    ...mapState('user', [
-      'user',
+    ...mapState('auth', [
+      'currentUser',
     ]),
   },
   mounted() {
-    if (this.user) return
+    if (this.currentUser) return
 
     this.$axios.$get('/api/users/1')
       .then(this.setUser)
       .catch(({ status }) => Promise.reject(status))
   },
   methods: {
-    ...mapActions('user', [
+    ...mapActions('auth', [
       'setUser',
     ]),
   },
