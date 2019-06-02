@@ -160,7 +160,9 @@
           Pare de adiar os seus sonhos, comece agora a torná-lo real
         </h1>
 
-        <e-button class="section__action">Iniciar minha campanha</e-button>
+        <e-button class="section__action">
+          Iniciar minha campanha
+        </e-button>
       </v-container>
     </div>
   </div>
