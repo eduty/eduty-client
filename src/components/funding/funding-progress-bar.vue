@@ -1,16 +1,29 @@
 <template>
-  <div class="progress-background">
-    <div
-      class="progress-bar"
-      :style="{ 'width': `${percentage}%` }"
-    />
+  <div>
+    <div class="progress-background">
+      <div
+        class="progress-bar"
+        :style="{ 'width': `${percentage}%` }"
+      />
 
-    <div
-      v-for="i in installments.howMany"
-      :key="i"
-      :class="{ 'installment--paid': installments.howManyPaid >= i }"
-      class="installment"
-    />
+      <div
+        v-for="i in installments.howMany"
+        :key="i"
+        :class="{ 'installment--paid': installments.howManyPaid >= i }"
+        class="installment"
+      />
+    </div>
+    <ul class="legend">
+      <li class="legend__item legend__item--paid">
+        Mensalidades pagas
+      </li>
+      <li class="legend__item legend__item--received">
+        Contribuições recebidas
+      </li>
+      <li class="legend__item legend__item--missing">
+        Quanto falta para bater a meta
+      </li>
+    </ul>
   </div>
 </template>
 

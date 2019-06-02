@@ -26,3 +26,45 @@
 .installment--paid {
   background-color: $color-primary;
 }
+
+.legend {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+}
+
+.legend__item {
+  position: relative;
+  padding-left: 32px;
+  padding-right: 32px;
+
+  &::before {
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 16px;
+    left: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    }
+}
+
+.legend__item--paid {
+  &::before {
+    background-color: $color-primary;
+    }
+  }
+
+.legend__item--received {
+  &::before {
+    background-color: $color-accent;
+    }
+  }
+
+.legend__item--missing {
+  &::before {
+    background-color: $color-gray;
+    }
+  }
