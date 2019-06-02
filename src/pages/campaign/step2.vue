@@ -50,7 +50,7 @@
             </v-flex>
           </v-layout>
 
-          <div class="mt-2 mb-2">
+          <div class="mt-2 mb-3">
             <strong class="step__text">Selecione onde você quer estudar</strong>
           </div>
 
