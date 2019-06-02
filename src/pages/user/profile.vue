@@ -2,8 +2,8 @@
   <div>
     <funding-progressBar
       :installments="installments"
-      :total="courseTotalPrice"
-      :progress="totalRaised"
+      :total="100"
+      :progress="40"
     />
   </div>
 </template>
