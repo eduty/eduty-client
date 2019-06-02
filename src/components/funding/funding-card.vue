@@ -17,7 +17,7 @@
         </strong>
 
         <div class="figure__details">
-          R$ CARTIADO recebidos
+          R$ 1.256 recebidos
         </div>
       </div>
     </div>
@@ -27,14 +27,12 @@
         {{ installments.howMany - installments.howManyPaid }}
       </div>
 
-      <div>
-        <strong class="figure__title">
-          mensalidades pendentes
-        </strong>
+      <strong class="figure__title">
+        mensalidades pendentes
+      </strong>
 
-        <div class="figure__details">
-          R$ CARTIADO em aberto
-        </div>
+      <div class="figure__details">
+        R$ 15.335 em aberto
       </div>
     </div>
 
@@ -63,8 +61,8 @@ export default {
   computed: {
     installments() {
       return {
-        howMany: 33,
-        howManyPaid: 6,
+        howMany: 197,
+        howManyPaid: 32,
       }
     },
   },
