@@ -17,7 +17,8 @@
         </v-flex>
 
         <v-flex
-          md10
+          lg10
+          sm9
           class="user-header__wrapper"
         >
           <h1 class="display-3">
