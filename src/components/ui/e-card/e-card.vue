@@ -2,6 +2,10 @@
   <v-card
     v-bind="$attrs"
     class="e-card"
+    :class="{
+      [`e-card--${size}`]: size,
+    }"
+    v-on="$listeners"
   >
     <slot />
   </v-card>
@@ -9,6 +13,12 @@
 
 <script>
 export default {
+  props: {
+    size: {
+      type: String,
+      default: '',
+    },
+  },
 }
 </script>
 

@@ -4,6 +4,7 @@
     depressed
     class="e-button"
     :class="[`e-button--${type}`]"
+    v-on="$listeners"
   >
     <slot />
   </v-btn>
