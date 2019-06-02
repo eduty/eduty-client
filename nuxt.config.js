@@ -69,19 +69,6 @@ export default {
       })
 
       routes.push({
-        name: 'user',
-        path: '/:userId',
-        component: resolve(__dirname, './src/pages/user/index.vue'),
-        children: [
-          {
-            name: 'user-profile',
-            path: '',
-            component: resolve(__dirname, './src/pages/user/profile.vue'),
-          },
-        ],
-      })
-
-      routes.push({
         path: '/campanha',
         component: resolve(__dirname, './src/pages/campaign/index.vue'),
         children: [
@@ -99,6 +86,19 @@ export default {
             name: 'campaign-step3',
             path: 'porque',
             component: resolve(__dirname, './src/pages/campaign/step3.vue'),
+          },
+        ],
+      })
+
+      routes.push({
+        name: 'user',
+        path: '/:userId',
+        component: resolve(__dirname, './src/pages/user/index.vue'),
+        children: [
+          {
+            name: 'user-profile',
+            path: '',
+            component: resolve(__dirname, './src/pages/user/profile.vue'),
           },
         ],
       })
