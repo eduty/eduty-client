@@ -21,12 +21,37 @@
 
 .progress-card__installments {
   align-self: end;
+  display: grid;
+  grid-template: 'figure title' 1fr 'figure details' 1fr / 1fr 5fr;
+  grid-column-gap: 16px;
 }
 
 .progress-card__installments--guaranteed {
   grid-area: txt1;
+  color: $color-accent;
 }
 
 .progress-card__installments--pending {
   grid-area: txt2;
+  color: $color-gray;
 }
+
+.figure__figure {
+  grid-area: figure;
+  text-align: right;
+  }
+
+.figure__title {
+  grid-area: title;
+  color: $color-primary;
+  font-weight: bold;
+  font-size: 18px;
+  align-self: center;
+  }
+
+.figure__details {
+  grid-area: details;
+  line-height: 1.5;
+  font-size: 16px;
+  align-self: center;
+  }
