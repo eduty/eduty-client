@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Header />
+    <the-header />
 
     <v-content style="padding-top: 140px;">
       <v-container>
@@ -21,11 +21,11 @@
 </template>
 
 <script>
-import { Header } from '~/components/layout'
+import { TheHeader } from '~/components/layout'
 
 export default {
   components: {
-    Header,
+    TheHeader,
   },
 }
 </script>
